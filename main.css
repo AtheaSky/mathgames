@@ -1,0 +1,32 @@
+/* All */
+* {
+  margin: 0;
+  font: sans-serif;
+}
+
+/* HTML */
+html {
+  margin: 0;
+  padding: 0;
+  background-image: url("./images/bg-by-kollsd.png");
+  text-align: center;
+}
+
+/* Body */
+body {
+  background-color: rgb(207, 209, 206);
+  color: rgb(8, 10, 7);
+
+  margin: 20px 8% 20px 8%;
+  padding: 5px;
+  border-color: rgb(126, 134, 122);
+  border-width: 15px;
+  border-style: groove;
+}
+
+h1 {
+  font-family: "Momo Trust Display", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 36px;
+}
