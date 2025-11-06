@@ -28,5 +28,41 @@ h1 {
   font-family: "Momo Trust Display", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 36px;
+  font-size: 30pt;
+}
+
+/* Bingo */
+.bingo {
+  font-size: 24pt;
+}
+.bingo table {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  border-spacing: 10px;
+}
+.bingo td {
+  background-color: rgb(187, 187, 187);
+  padding: 10px;
+  width: 25%;
+  height: 25%;
+}
+
+/* Grid */
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px 220px;
+  grid-template-areas: "a b c";
+}
+.item1 {
+  grid-area: a;
+}
+.item2 {
+  grid-area: b;
+}
+
+.item3 {
+  grid-area: c;
 }
