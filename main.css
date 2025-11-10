@@ -17,7 +17,7 @@ body {
   background-color: rgb(207, 209, 206);
   color: rgb(8, 10, 7);
 
-  margin: 20px 8% 20px 8%;
+  margin: 20px 10% 20px 10%;
   padding: 5px;
   border-color: rgb(126, 134, 122);
   border-width: 15px;
@@ -48,21 +48,80 @@ h1 {
   width: 25%;
   height: 25%;
 }
+.bingo td:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+}
 
-/* Grid */
-.wrapper {
+/* Main Grid */
+.gridwrap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 100px 220px;
+  grid-template-rows: auto;
   grid-template-areas: "a b c";
 }
-.item1 {
+
+/* Colour selection */
+.left {
   grid-area: a;
 }
-.item2 {
+.left table {
+  margin-right: 0px;
+  margin-left: auto;
+  margin-top: 50px;
+  border-spacing: 10px;
+}
+.left td {
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.left td:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+}
+/* Colours */
+.col1 {
+  background-color: #2828a8;
+}
+.col2 {
+  background-color: #0f7e0f;
+}
+.col3 {
+  background-color: rgb(199, 29, 29);
+}
+.col4 {
+  background-color: #c7ac11;
+}
+.col5 {
+  background-color: #44db44;
+}
+.col6 {
+  background-color: #25bdbd;
+}
+.col7 {
+  background-color: #e63be6;
+}
+.col8 {
+  background-color: #813aa1;
+}
+
+/* Bingo board */
+.mid {
   grid-area: b;
 }
 
-.item3 {
+/* Game Numbers */
+.right {
   grid-area: c;
+
+  text-align: left;
+  margin-top: 50px;
+
+  font-size: 16pt;
+  font-family: sans-serif;
+}
+.right h2 {
+  padding: 10px;
 }
