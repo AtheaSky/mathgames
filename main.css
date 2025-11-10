@@ -83,28 +83,28 @@ h1 {
 }
 /* Colours */
 .col1 {
-  background-color: #2828a8;
+  background-color: #2828a8 !important;
 }
 .col2 {
-  background-color: #126812;
+  background-color: #126812 !important;
 }
 .col3 {
-  background-color: rgb(199, 29, 29);
+  background-color: rgb(199, 29, 29) !important;
 }
 .col4 {
-  background-color: #c0a718;
+  background-color: #c0a718 !important;
 }
 .col5 {
-  background-color: #63aa63;
+  background-color: #63aa63 !important;
 }
 .col6 {
-  background-color: #25bdbd;
+  background-color: #25bdbd !important;
 }
 .col7 {
-  background-color: #e63be6;
+  background-color: #e63be6 !important;
 }
 .col8 {
-  background-color: #813aa1;
+  background-color: #813aa1 !important;
 }
 
 /* Bingo board */
