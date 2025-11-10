@@ -69,7 +69,7 @@ h1 {
   margin-right: 0px;
   margin-left: auto;
   margin-top: 50px;
-  border-spacing: 10px;
+  border-spacing: 15px;
 }
 .left td {
   padding: 10px;
@@ -86,16 +86,16 @@ h1 {
   background-color: #2828a8;
 }
 .col2 {
-  background-color: #0f7e0f;
+  background-color: #126812;
 }
 .col3 {
   background-color: rgb(199, 29, 29);
 }
 .col4 {
-  background-color: #c7ac11;
+  background-color: #c0a718;
 }
 .col5 {
-  background-color: #44db44;
+  background-color: #63aa63;
 }
 .col6 {
   background-color: #25bdbd;
