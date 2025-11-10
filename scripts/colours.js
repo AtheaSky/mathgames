@@ -8,11 +8,11 @@ function changeActiveCol(colID) {
     activeCol = null;
   }
 
-  //   Unsquare all colours
+  // Unsquare all colours
   for (let i = 1; i <= 8; i++) {
     document.getElementById(`col${i}`).style.borderRadius = "50%";
   }
-  //   Square new active if not null
+  // Square new active if not null
   if (activeCol !== null) {
     document.getElementById(activeCol).style.borderRadius = "5px";
   }

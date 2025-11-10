@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="./style/main.css" />
     <link rel="stylesheet" href="./style/bingo.css" />
 
-    <script src="./scripts/changecol.js"></script>
+    <script src="./scripts/colours.js"></script>
+    <script src="./scripts/bingoNum.js"></script>
 
     <!-- Title font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,42 +62,69 @@
         <table>
           <!-- Row 1 -->
           <tr>
-            <td id="A" onclick="updateCol(id)">32</td>
-            <td id="B" onclick="updateCol(id)">40</td>
-            <td id="C" onclick="updateCol(id)">45</td>
-            <td id="D" onclick="updateCol(id)">112</td>
+            <td id="cell1" onclick="updateCol(id)"></td>
+            <td id="cell2" onclick="updateCol(id)"></td>
+            <td id="cell3" onclick="updateCol(id)"></td>
+            <td id="cell4" onclick="updateCol(id)"></td>
           </tr>
           <!-- Row 2 -->
           <tr>
-            <td id="E" onclick="updateCol(id)">81</td>
-            <td id="F" onclick="updateCol(id)">6</td>
-            <td id="G" onclick="updateCol(id)">110</td>
-            <td id="H" onclick="updateCol(id)">50</td>
+            <td id="cell5" onclick="updateCol(id)"></td>
+            <td id="cell6" onclick="updateCol(id)"></td>
+            <td id="cell7" onclick="updateCol(id)"></td>
+            <td id="cell8" onclick="updateCol(id)"></td>
           </tr>
           <!-- Row 3 -->
           <tr>
-            <td id="I" onclick="updateCol(id)">56</td>
-            <td id="J" onclick="updateCol(id)">12</td>
-            <td id="K" onclick="updateCol(id)">25</td>
-            <td id="L" onclick="updateCol(id)">56</td>
+            <td id="cell9" onclick="updateCol(id)"></td>
+            <td id="cell10" onclick="updateCol(id)"></td>
+            <td id="cell11" onclick="updateCol(id)"></td>
+            <td id="cell12" onclick="updateCol(id)"></td>
           </tr>
           <!-- Row 4 -->
           <tr>
-            <td id="M" onclick="updateCol(id)">65</td>
-            <td id="N" onclick="updateCol(id)">60</td>
-            <td id="O" onclick="updateCol(id)">75</td>
-            <td id="P" onclick="updateCol(id)">20</td>
+            <td id="cell13" onclick="updateCol(id)"></td>
+            <td id="cell14" onclick="updateCol(id)"></td>
+            <td id="cell15" onclick="updateCol(id)"></td>
+            <td id="cell16" onclick="updateCol(id)"></td>
           </tr>
         </table>
       </div>
 
       <!-- Game Numbers -->
       <div class="right">
-        <h2>7</h2>
-        <h2>9</h2>
-        <h2>1</h2>
-        <h2>6</h2>
+        <h2 id="num1"></h2>
+        <h2 id="num2"></h2>
+        <h2 id="num3"></h2>
+        <h2 id="num4"></h2>
       </div>
     </div>
+
+    <!-- Setup -->
+    <form action="" id="boardSettings">
+      <!-- Board Range -->
+      <h3>Board Range</h3>
+      <!-- Board minimum -->
+      <div>
+        <label for="boardMin">Min:</label>
+        <input type="number" id="boardMin" min="1" max="100" value="5" />
+      </div>
+
+      <!-- Board maximum -->
+      <div>
+        <label for="boardMax">Max:</label>
+        <input type="number" id="boardMax" min="16" max="1000" value="120" />
+      </div>
+
+      <!-- Your numbers maximum -->
+      <div>
+        <h3>Your Numbers Range</h3>
+        <label for="yourMax">Max:</label>
+        <input type="number" id="yourMax" min="1" max="100" value="9" />
+      </div>
+
+      <!-- Generate board -->
+      <input type="button" value="Generate Board" onclick="genBoard()" />
+    </form>
   </body>
 </html>

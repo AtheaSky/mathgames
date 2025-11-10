@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 
-/* Main Grid */
+/* Grid */
 .gridwrap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -91,4 +91,14 @@
 }
 .right h2 {
   padding: 10px;
+}
+
+input {
+  width: 60px;
+  padding: 2px;
+}
+input[type="button"] {
+  padding: 5px;
+  width: 150px;
+  margin: 10px;
 }
