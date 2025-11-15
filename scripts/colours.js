@@ -55,6 +55,8 @@ const winStates = [
   [1, 6, 11, 16],
   [4, 7, 10, 13],
 ];
+// Confetti
+const jsConfetti = new JSConfetti();
 
 function checkGameState(updatedCellNum, colClass) {
   // Scan winstates for updated cell
@@ -79,9 +81,6 @@ function checkGameState(updatedCellNum, colClass) {
           document.getElementById(`cell${updatedCellNum}`)
         ).backgroundColor;
         console.log(winCol);
-
-        // Confetti
-        const jsConfetti = new JSConfetti();
 
         // Trigger colorful confetti
         jsConfetti.addConfetti({
