@@ -8,7 +8,6 @@ function genBoard() {
 
   let board = [];
   while (board.length < 16) {
-    console.log(`Board array has ${board.length} items`);
     let isDuplicate = true;
     while (isDuplicate) {
       // Gen number in range
@@ -22,7 +21,6 @@ function genBoard() {
       }
     }
   }
-  console.log(`Numbers list generated: ${board}`);
   // Insert board numbers
   for (let i = 0; i < 16; i++) {
     document.getElementById(`cell${i + 1}`).innerHTML = board[i];

@@ -32,6 +32,63 @@ function updateCol(cell) {
     // Add new colour if new
     if (!shouldNeutralise) {
       document.getElementById(cell).classList.add(activeCol);
+
+      // Check if now in win state
+      checkGameState(Number(cell.slice(4)), activeCol);
+    }
+  }
+}
+
+// Win states
+const winStates = [
+  // Rows
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+  [13, 14, 15, 16],
+  // Columns
+  [1, 5, 9, 13],
+  [2, 6, 10, 14],
+  [3, 7, 11, 15],
+  [4, 8, 12, 16],
+  // Diagonals
+  [1, 6, 11, 16],
+  [4, 7, 10, 13],
+];
+
+function checkGameState(updatedCellNum, colClass) {
+  // Scan winstates for updated cell
+  for (let state of winStates) {
+    // Check if updated cell is in a winstate
+    if (state.includes(updatedCellNum)) {
+      // Check if all other cells in said winstate match colour class
+      let counter = 0;
+      for (let cellNum of state) {
+        if (
+          document.getElementById(`cell${cellNum}`).classList.contains(colClass)
+        ) {
+          counter++;
+        }
+      }
+      // If so, win
+      if (counter == 4) {
+        console.log("Winner");
+
+        // Get winner colour
+        let winCol = window.getComputedStyle(
+          document.getElementById(`cell${updatedCellNum}`)
+        ).backgroundColor;
+        console.log(winCol);
+
+        // Confetti
+        const jsConfetti = new JSConfetti();
+
+        // Trigger colorful confetti
+        jsConfetti.addConfetti({
+          confettiColors: [winCol],
+          confettiNumber: 200,
+        });
+      }
     }
   }
 }
