@@ -1,6 +1,6 @@
 let answers = [];
 let questions = [];
-let overallvalid;
+let overallValid = false;
 
 // CREATE QUESTIONS BUTTON
 function createQuestions() {
@@ -76,30 +76,23 @@ function createQuestions() {
             answers.push(pair[0] - pair[1]);
           } else if (operator == "×") {
             answers.push(pair[0] * pair[1]);
-          } else if (oerator == "÷") {
+          } else if (operator == "÷") {
             answers.push(pair[0] / pair[1]);
           }
         }
       }
     }
   } else if (settingsType == "Custom") {
-    overallvalid = true;
+    overallValid = true;
 
     for (let i = 0; i < 3; i++) {
       questions.push(document.getElementById(`custQ${i + 1}`).value);
       answers.push(document.getElementById(`custA${i + 1}`).value);
     }
-    // q1 = document.getElementById("custQ1").value;
-    // q2 = document.getElementById("custQ2").value;
-    // q3 = document.getElementById("custQ3").value;
-
-    // a1 = document.getElementById("custA1").value;
-    // a2 = document.getElementById("custA2").value;
-    // a3 = document.getElementById("custA3").value;
   }
 
   // Display questions
-  if (overallvalid) {
+  if (overallValid) {
     for (let i = 0; i < 3; i++) {
       document.getElementById(`q${i + 1}Box`).innerText = questions[i];
     }
