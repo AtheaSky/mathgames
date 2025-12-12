@@ -30,10 +30,12 @@ function genBoard() {
   let yourMax = +document.getElementById("yourMax").value;
 
   let yourNums = [];
-  while (yourNums.length < 4) {
+  // Two lower half
+  while (yourNums.length < 2) {
     let isDuplicate = true;
     while (isDuplicate) {
-      let rand = 1 + Math.floor(Math.random() * yourMax);
+      // INCLUSIVE INTEGER: Math.floor(Math.random() * (max - min + 1)) + min;
+      let rand = Math.floor(Math.random() * Math.floor(yourMax / 2)) + 1;
 
       isDuplicate = yourNums.includes(rand);
       if (!isDuplicate) {
@@ -41,6 +43,23 @@ function genBoard() {
       }
     }
   }
+  // Two upper  half
+  while (yourNums.length < 4) {
+    let isDuplicate = true;
+    while (isDuplicate) {
+      // INCLUSIVE INTEGER: Math.floor(Math.random() * (max - min + 1)) + min;
+      let rand = Math.floor(
+        Math.random() * (yourMax - Math.floor(yourMax / 2) + 1) +
+          Math.floor(yourMax / 2)
+      );
+
+      isDuplicate = yourNums.includes(rand);
+      if (!isDuplicate) {
+        yourNums.push(rand);
+      }
+    }
+  }
+
   // Insert your numbers
   for (let i = 0; i < 4; i++) {
     document.getElementById(`num${i + 1}`).innerHTML = yourNums[i];

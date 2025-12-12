@@ -8,6 +8,7 @@
 
     <script src="./scripts/colours.js"></script>
     <script src="./scripts/bingoNum.js"></script>
+    <script src="./scripts/sfx.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
     <!-- Title font -->
@@ -37,7 +38,11 @@
         <table>
           <!-- Row 1 -->
           <tr>
-            <td id="col1" class="col1" onclick="changeActiveCol(1)"></td>
+            <td
+              id="col1"
+              class="col1"
+              onclick="changeActiveCol(1); sfxBtn()"
+            ></td>
             <td id="col2" class="col2" onclick="changeActiveCol(2)"></td>
           </tr>
           <!-- Row 2 -->
@@ -92,7 +97,7 @@
         </table>
       </div>
 
-      <!-- Game Numbers -->
+      <!-- Your Numbers -->
       <div class="right">
         <h2 id="num1"></h2>
         <h2 id="num2"></h2>
@@ -108,13 +113,13 @@
       <!-- Board minimum -->
       <div>
         <label for="boardMin">Min:</label>
-        <input type="number" id="boardMin" min="1" max="100" value="5" />
+        <input type="number" id="boardMin" min="12" max="100" value="12" />
       </div>
 
       <!-- Board maximum -->
       <div>
         <label for="boardMax">Max:</label>
-        <input type="number" id="boardMax" min="16" max="1000" value="120" />
+        <input type="number" id="boardMax" min="28" max="1000" value="120" />
       </div>
 
       <!-- Your numbers maximum -->
@@ -127,5 +132,14 @@
       <!-- Generate board -->
       <input type="button" value="Generate Board" onclick="genBoard()" />
     </form>
+
+    <!-- Instructions -->
+    <hr />
+    <p>
+      On your turn, <b>add</b>, <b>subtract</b>, <b>multiply</b>, or
+      <b>divide</b> using YOUR NUMBERS on the right to make any number on the
+      board to mark it off in your colour. The first player to get 4 in a row
+      either vertically, horizontally, or diagonally wins the game.
+    </p>
   </body>
 </html>

@@ -1,0 +1,51 @@
+/* Grid */
+.gridwrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: "a b b";
+}
+
+/* Vault */
+.left {
+  grid-area: a;
+
+  margin-left: auto;
+}
+
+/* Questions */
+.right {
+  grid-area: b;
+  /* 
+  text-align: left;
+  margin-top: 50px;
+
+  font-size: 16pt;
+  font-family: sans-serif; */
+}
+
+/* Setup */
+input {
+  width: 40px;
+  padding: 2px;
+}
+input[type="button"] {
+  padding: 5px;
+  width: 150px;
+  margin: 10px;
+}
+
+/* Instructions */
+hr {
+  margin: auto;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+p {
+  margin: auto;
+  width: 60%;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  color: rgb(66, 66, 66);
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/vault.css" />
+
+    <script src="./scripts/sfx.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+    <!-- Title font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Text on tab name -->
+    <title>Math Vault</title>
+
+    <!-- Site icon on tab. Do one of the following:
+        * Replace "favicon.png" in images folder with your icon of same name
+        * Rename href below to "./images/(YOUR-IMAGE.EXTENSION)"
+        * Rename href below to "(IMAGE-WEB-URL.EXTENSION)" -->
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+  </head>
+
+  <body>
+    <h1>Math Vault</h1>
+
+    <div class="gridwrap">
+      <!-- Left -->
+      <div class="left">
+        <img src="./images/vault.png" width="400" />
+      </div>
+
+      <!-- Right -->
+      <div class="right">
+        <!-- -------------------- Setup -->
+        <form action="" id="settings">
+          <!-- Static -->
+          <select id="qType">
+            <option disabled selected value>-- question type --</option>
+            <option value="Operator">Operator</option>
+            <option value="Custom">Custom</option>
+          </select>
+
+          <h3>Questions</h3>
+          <!-- Type dependent -->
+          <div id="typedSettings">(Select question type above)</div>
+
+          <!-- Create Questions Button -->
+          <input
+            type="button"
+            value="Create Questions"
+            id="createBtn"
+            onclick="createQuestions()"
+          />
+        </form>
+
+        <script src="./scripts/vaultSetup.js"></script>
+
+        <!-- -------------------- Questions -->
+         <div id="questionBox">
+          <div id="q1Box"></div>
+          <div id="q2Box"></div>
+          <div id="q3Box"></div>
+         </div>
+        
+    </div>
+
+    <!-- Instructions -->
+    <hr />
+    <p>Inctructions</p>
+  </body>
+</html>

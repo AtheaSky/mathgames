@@ -50,28 +50,28 @@
 }
 /* Colours */
 .col1 {
-  background-color: #3a52a3 !important;
+  background-color: #e2873c !important;
 }
 .col2 {
-  background-color: #126812 !important;
+  background-color: #1c5e1c !important;
 }
 .col3 {
-  background-color: rgb(199, 29, 29) !important;
+  background-color: rgb(179, 54, 54) !important;
 }
 .col4 {
-  background-color: #c0a718 !important;
+  background-color: #c9ab4a !important;
 }
 .col5 {
-  background-color: #63aa63 !important;
+  background-color: #67af6b !important;
 }
 .col6 {
-  background-color: #25bdbd !important;
+  background-color: #6e9bdf !important;
 }
 .col7 {
-  background-color: #e63be6 !important;
+  background-color: #fc65c2 !important;
 }
 .col8 {
-  background-color: #813aa1 !important;
+  background-color: #8f5bbd !important;
 }
 
 /* Bingo board */
@@ -101,4 +101,19 @@ input[type="button"] {
   padding: 5px;
   width: 150px;
   margin: 10px;
+}
+
+/* Instructions */
+hr {
+  margin: auto;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+p {
+  margin: auto;
+  width: 60%;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  color: rgb(66, 66, 66);
 }
