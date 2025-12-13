@@ -4,7 +4,7 @@ function genBoard() {
   // Hide instructions box
   document.getElementById("instructionsBox").style.display = "none";
   // Show extra drawing space
-  document.getElementById("drawSpace").style.padding = "230px";
+  document.getElementById("drawSpace").style.padding = "200px";
 
   // Generate board
   let boardMin = +document.getElementById("boardMin").value;
