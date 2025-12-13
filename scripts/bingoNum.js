@@ -1,6 +1,10 @@
 function genBoard() {
   // Hide settings form
   document.getElementById("boardSettings").style.display = "none";
+  // Hide instructions box
+  document.getElementById("instructionsBox").style.display = "none";
+  // Show extra drawing space
+  document.getElementById("drawSpace").style.padding = "230px";
 
   // Generate board
   let boardMin = +document.getElementById("boardMin").value;
