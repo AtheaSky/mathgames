@@ -33,7 +33,22 @@
     <div class="gridwrap">
       <!-- Left -->
       <div class="left">
-        <img src="./images/vault.png" width="400" />
+        <img id="vaultImg" src="./images/vaultClosed.png" width="400" />
+
+        <!-- Answer input boxes -->
+        <form action="" id="answersBox">
+          <input type="number" id="a1Box" min="0" max="1000" />
+          <input type="number" id="a2Box" min="0" max="1000" />
+          <input type="number" id="a3Box" min="0" max="1000" />
+
+          <!-- Check answers -->
+          <input
+            id="openBtn"
+            type="button"
+            value="Open"
+            onclick="openVault()"
+          />
+        </form>
       </div>
 
       <!-- Right -->
@@ -60,7 +75,7 @@
           />
         </form>
 
-        <script src="./scripts/vaultSetup.js"></script>
+        <script src="./scripts/vault.js"></script>
 
         <!-- -------------------- Questions -->
         <div id="questionBox">
