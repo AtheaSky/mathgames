@@ -1,0 +1,7 @@
+img {
+  margin: 30px;
+  width: 200px;
+}
+img:hover {
+  filter: brightness(115%);
+}

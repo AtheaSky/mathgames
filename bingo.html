@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,6 @@
 
     <script src="./scripts/colours.js"></script>
     <script src="./scripts/bingoNum.js"></script>
-    <script src="./scripts/sfx.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
     <!-- Title font -->
@@ -41,7 +40,10 @@
             <td
               id="col1"
               class="col1"
-              onclick="changeActiveCol(1); sfxBtn()"
+              onclick="
+                changeActiveCol(1);
+                sfxBtn();
+              "
             ></td>
             <td id="col2" class="col2" onclick="changeActiveCol(2)"></td>
           </tr>
