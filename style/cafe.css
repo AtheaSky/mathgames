@@ -1,0 +1,47 @@
+/* Grid */
+.gridwrap {
+  /* Grid */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "a c c"
+    "b c c";
+
+  /* Gameboard */
+  background-image: url("../images/bg-by-kollsd.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  height: 600px;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.speech {
+  grid-area: a;
+  margin: auto;
+}
+.cat {
+  grid-area: b;
+  margin: auto;
+}
+.right {
+  grid-area: c;
+}
+
+.movable {
+  position: absolute;
+  cursor: move;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
