@@ -70,18 +70,35 @@
 
   text-align: center;
   font-size: 18px;
+
+  cursor: default;
+}
+.left input:disabled {
+  cursor: not-allowed;
 }
 #a1Box {
   border: 2px solid rgb(223, 8, 8);
   background: rgb(223, 190, 190);
 }
+#a1Box:focus {
+  border: 2px solid rgb(223, 8, 8);
+  outline: none;
+}
 #a2Box {
   border: 2px solid #008000;
   background-color: rgb(178, 201, 183);
 }
+#a2Box:focus {
+  border: 2px solid #008000;
+  outline: none;
+}
 #a3Box {
   border: 2px solid #0000ff;
   background-color: rgb(176, 176, 230);
+}
+#a3Box:focus {
+  border: 2px solid #0000ff;
+  outline: none;
 }
 /* ----- Answer input: remove number arrow increment buttons ----- */
 /* Chrome, Safari, Edge, Opera */

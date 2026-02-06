@@ -35,7 +35,7 @@
 
 .movable {
   position: absolute;
-  cursor: move;
+  cursor: grab;
 }
 
 img {

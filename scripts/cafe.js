@@ -26,6 +26,11 @@ function dragElement(e) {
   e.preventDefault();
   activeFish = e.target;
   console.log(activeFish);
+
+  // Set cursor to grabbing while clicked
+  activeFish.style.cursor = "grabbing";
+
+  // Handling
   var pos1 = 0,
     pos2 = 0,
     pos3 = 0,
@@ -54,5 +59,8 @@ function dragElement(e) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
+
+    // Set cursor back to to grab when released
+    activeFish.style.cursor = "grab";
   }
 }

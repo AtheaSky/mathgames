@@ -7,13 +7,18 @@ const factors = (number) =>
 
 // ON REFESH, SETTINGS TO RESET/BLANK
 window.onload = function () {
+  // Set question type to none
   this.document.getElementById("qType").value = "-- question type --";
   // HIDE create questions button
   document.getElementById("createBtn").style.display = "none";
 
+  // Empty answer input boxes
   this.document.getElementById("a1Box").value = "";
   this.document.getElementById("a2Box").value = "";
   this.document.getElementById("a3Box").value = "";
+
+  // Disable "OPEN" button
+  this.document.getElementById("openBtn").disabled = true;
 };
 
 // CREATE QUESTIONS BUTTON
@@ -176,6 +181,9 @@ function createQuestions() {
       document.getElementById(`q${i + 1}Box`).innerText = questions[i];
     }
     console.log(answers);
+
+    // Enable "OPEN" button
+    document.getElementById("openBtn").disabled = false;
   } else {
     document.getElementById("questionBox").innerText = "INVALID INPUT";
   }
