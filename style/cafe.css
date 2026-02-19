@@ -2,11 +2,11 @@
 .gridwrap {
   /* Grid */
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   grid-template-areas:
-    "a c c"
-    "b c c";
+    "a c"
+    "b c";
 
   /* Gameboard */
   background-image: url("../images/cat_cafe_background.png");
@@ -31,6 +31,8 @@
 }
 .right {
   grid-area: c;
+  margin: auto;
+  margin-bottom: 5%;
 }
 
 .movable {

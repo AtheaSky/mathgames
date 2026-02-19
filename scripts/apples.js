@@ -1,4 +1,4 @@
-// Generate fish
+// Generate apple
 var container = document.getElementById("snackSpot");
 // (max - min)
 var minWidth = document.body.offsetWidth / 2 + 80;
@@ -7,28 +7,29 @@ var rangeWidth = document.body.offsetWidth - 150 - minWidth;
 var minHeight = 150;
 var rangeHeight = document.body.offsetHeight - 100 - minHeight;
 
-// Create fish with random locations
+// Create apples with random locations
 for (var i = 0; i < 10; i++) {
-  container.innerHTML += `<img src="./images/apple.png" width="45px" class="movable" id="fish${i}" draggable="false" />`;
-  var newFish = document.getElementById(`fish${i}`);
-  newFish.style.left = Math.round(Math.random() * rangeWidth + minWidth) + "px";
-  newFish.style.top =
+  container.innerHTML += `<img src="./images/apple.png" width="45px" class="movable" id="apple${i}" draggable="false" />`;
+  var newApple = document.getElementById(`apple${i}`);
+  newApple.style.left =
+    Math.round(Math.random() * rangeWidth + minWidth) + "px";
+  newApple.style.top =
     Math.round(Math.random() * rangeHeight + minHeight) + "px";
 }
 
-fish = document.getElementsByClassName("movable");
-for (snack of fish) snack.onmousedown = dragElement;
+apple = document.getElementsByClassName("movable");
+for (snack of apple) snack.onmousedown = dragElement;
 
-var activeFish = "";
+var activeApple = "";
 
-// Movable fish
+// Movable apple
 function dragElement(e) {
   e.preventDefault();
-  activeFish = e.target;
-  console.log(activeFish);
+  activeApple = e.target;
+  console.log(activeApple);
 
   // Set cursor to grabbing while clicked
-  activeFish.style.cursor = "grabbing";
+  activeApple.style.cursor = "grabbing";
 
   // Handling
   var pos1 = 0,
@@ -51,8 +52,8 @@ function dragElement(e) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    activeFish.style.top = activeFish.offsetTop - pos2 + "px";
-    activeFish.style.left = activeFish.offsetLeft - pos1 + "px";
+    activeApple.style.top = activeApple.offsetTop - pos2 + "px";
+    activeApple.style.left = activeApple.offsetLeft - pos1 + "px";
   }
 
   function closeDragElement() {
@@ -61,6 +62,6 @@ function dragElement(e) {
     document.onmousemove = null;
 
     // Set cursor back to to grab when released
-    activeFish.style.cursor = "grab";
+    activeApple.style.cursor = "grab";
   }
 }

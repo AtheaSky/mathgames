@@ -1,23 +1,22 @@
 // Generate fish
 var container = document.getElementById("snackSpot");
-// (max - min)
-var minWidth = document.body.offsetWidth / 2 + 80;
-var rangeWidth = document.body.offsetWidth - 150 - minWidth;
+var treatBag = document.getElementById("treatBag");
 
-var minHeight = 150;
-var rangeHeight = document.body.offsetHeight - 100 - minHeight;
+// Create fish when treat bag clicked
+var nextID = 0;
+function createTreat(e) {
+  container.innerHTML += `<img src="./images/snack.png" width="100px" class="movable" id="fish${nextID}" draggable="false" />`;
+  var newFish = document.getElementById(`fish${nextID}`);
 
-// Create fish with random locations
-for (var i = 0; i < 12; i++) {
-  container.innerHTML += `<img src="./images/snack.png" width="100px" class="movable" id="fish${i}" draggable="false" />`;
-  var newFish = document.getElementById(`fish${i}`);
-  newFish.style.left = Math.round(Math.random() * rangeWidth + minWidth) + "px";
-  newFish.style.top =
-    Math.round(Math.random() * rangeHeight + minHeight) + "px";
+  var treatDimensions = treatBag.getBoundingClientRect();
+
+  newFish.style.left = treatDimensions.left - 120 + "px";
+  newFish.style.top = treatDimensions.top + 240 + "px";
+  nextID++;
+
+  fish = document.getElementsByClassName("movable");
+  for (snack of fish) snack.onmousedown = dragElement;
 }
-
-fish = document.getElementsByClassName("movable");
-for (snack of fish) snack.onmousedown = dragElement;
 
 var activeFish = "";
 
@@ -25,7 +24,6 @@ var activeFish = "";
 function dragElement(e) {
   e.preventDefault();
   activeFish = e.target;
-  console.log(activeFish);
 
   // Set cursor to grabbing while clicked
   activeFish.style.cursor = "grabbing";
@@ -56,11 +54,42 @@ function dragElement(e) {
   }
 
   function closeDragElement() {
+    // console.log("Closedrag");
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
 
     // Set cursor back to to grab when released
     activeFish.style.cursor = "grab";
+
+    // Count fish in bowl
+    manageCount();
   }
+}
+
+function manageCount() {
+  var catBounds = document.getElementById("cat").getBoundingClientRect();
+  var validFish = 0;
+  // Cat-top = 250
+  // Cat-right = 808
+  // Cat-bottom = 579
+  // Cat-left = 588
+
+  // Update valid count for each existing movable fish
+  // Fish-top is above cat-bottom
+  // Fish-right is right of cat-left
+  // Fish-bottom is below cat-top
+  // Fish-left is left of cat-right
+  for (fish of document.getElementsByClassName("movable")) {
+    var fishBounds = fish.getBoundingClientRect();
+    if (
+      fishBounds.top <= catBounds.bottom &&
+      fishBounds.right >= catBounds.left &&
+      fishBounds.bottom >= catBounds.top &&
+      fishBounds.left <= catBounds.right
+    ) {
+      validFish++;
+    }
+  }
+  console.log(validFish);
 }
