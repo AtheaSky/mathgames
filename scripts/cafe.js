@@ -4,7 +4,7 @@ var speechBounds = document.getElementById("speechImg").getBoundingClientRect();
 var leftBase = (speechBounds.left + speechBounds.right) / 2;
 var topBase = (speechBounds.top + speechBounds.bottom) / 2;
 speechBox.style.left = leftBase - 50 + "px";
-speechBox.style.top = topBase - 75 + "px";
+speechBox.style.top = topBase - 110 + "px";
 
 var modeText = `<font size="6pt">Mode?</font><br>`;
 modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `;
@@ -29,7 +29,7 @@ function chooseMode(mode) {
     } else {
       speechBox.style.left = leftBase - 72 + "px";
     }
-    speechBox.style.top = topBase - 20 + "px";
+    speechBox.style.top = topBase - 60 + "px";
   } else {
     speechBox.innerHTML = countTo;
 
@@ -39,7 +39,7 @@ function chooseMode(mode) {
     } else {
       speechBox.style.left = leftBase - 20 + "px";
     }
-    speechBox.style.top = topBase - 20 + "px";
+    speechBox.style.top = topBase - 60 + "px";
   }
 }
 
