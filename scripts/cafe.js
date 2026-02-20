@@ -1,11 +1,56 @@
-// Generate fish
-var container = document.getElementById("snackSpot");
+// ----- SETUP
+var speechBox = document.getElementById("speechBox");
+var speechBounds = document.getElementById("speechImg").getBoundingClientRect();
+var leftBase = (speechBounds.left + speechBounds.right) / 2;
+var topBase = (speechBounds.top + speechBounds.bottom) / 2;
+speechBox.style.left = leftBase - 50 + "px";
+speechBox.style.top = topBase - 75 + "px";
+
+var modeText = `<font size="6pt">Mode?</font><br>`;
+modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `;
+modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
+speechBox.innerHTML = modeText;
+
+// Random number 1-12 inclusive
+const countTo = Math.floor(Math.random() * 12) + 1;
+console.log(countTo);
+
+function chooseMode(mode) {
+  if (mode == "+") {
+    // Random number 1-countTo = x, remainder = y
+    var x = Math.floor(Math.random() * countTo) + 1;
+    var y = countTo - x;
+
+    speechBox.innerHTML = `${x} + ${y}`;
+
+    // Fix location
+    if (x > 9 || y > 9) {
+      speechBox.style.left = leftBase - 80 + "px";
+    } else {
+      speechBox.style.left = leftBase - 72 + "px";
+    }
+    speechBox.style.top = topBase - 20 + "px";
+  } else {
+    speechBox.innerHTML = countTo;
+
+    // Fix location
+    if (countTo > 9) {
+      speechBox.style.left = leftBase - 35 + "px";
+    } else {
+      speechBox.style.left = leftBase - 20 + "px";
+    }
+    speechBox.style.top = topBase - 20 + "px";
+  }
+}
+
+// ----- FISH
+// Create fish when treat bag clicked
+var snackSpot = document.getElementById("snackSpot");
 var treatBag = document.getElementById("treatBag");
 
-// Create fish when treat bag clicked
 var nextID = 0;
 function createTreat(e) {
-  container.innerHTML += `<img src="./images/snack.png" width="100px" class="movable" id="fish${nextID}" draggable="false" />`;
+  snackSpot.innerHTML += `<img src="./images/snack.png" width="100px" class="movable" id="fish${nextID}" draggable="false" />`;
   var newFish = document.getElementById(`fish${nextID}`);
 
   var treatDimensions = treatBag.getBoundingClientRect();

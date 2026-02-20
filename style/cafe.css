@@ -43,6 +43,12 @@
   cursor: grab;
 }
 
+#speechBox {
+  position: absolute;
+  font-size: 46pt;
+  font-family: "Momo Trust Display", sans-serif;
+}
+
 img {
   -webkit-user-drag: none;
   user-select: none;
