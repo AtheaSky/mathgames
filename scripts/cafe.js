@@ -55,8 +55,8 @@ function createTreat(e) {
 
   var treatDimensions = treatBag.getBoundingClientRect();
 
-  newFish.style.left = treatDimensions.left - 120 + "px";
-  newFish.style.top = treatDimensions.top + 240 + "px";
+  newFish.style.left = treatDimensions.left - 130 + "px";
+  newFish.style.top = treatDimensions.top + 130 + "px";
   nextID++;
 
   fish = document.getElementsByClassName("movable");
