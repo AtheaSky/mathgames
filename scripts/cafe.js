@@ -13,8 +13,7 @@ modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
 speechBox.innerHTML = modeText;
 
 // Random number 1-12 inclusive
-const countTo = Math.floor(Math.random() * 12) + 1;
-console.log(`GOAL: ${countTo}`);
+var countTo;
 
 function chooseMode(mode) {
   // Hide mode label
@@ -22,30 +21,20 @@ function chooseMode(mode) {
 
   // Show number
   if (mode == "+") {
-    // Random number 1-countTo = x, remainder = y
-    var x = Math.floor(Math.random() * countTo) + 1;
+    // Generate number 2-12 for addition
+    countTo = Math.floor(Math.random() * 11) + 2;
+
+    // Random number 1 - (countTo - 1) = x, remainder = y
+    var x = Math.floor(Math.random() * (countTo - 1)) + 1;
     var y = countTo - x;
 
     speechBox.innerHTML = `${x} + ${y}`;
-
-    // Fix location
-    // if (x > 9 || y > 9) {
-    //   speechBox.style.left = leftBase - 80 + "px";
-    // } else {
-    //   speechBox.style.left = leftBase - 72 + "px";
-    // }
-    // speechBox.style.top = topBase - 60 + "px";
   } else {
+    // Generate number 1-12 for regular
+    countTo = Math.floor(Math.random() * 12) + 1;
     speechBox.innerHTML = countTo;
-
-    // Fix location
-    if (countTo > 9) {
-      speechBox.style.left = leftBase - 35 + "px";
-    } else {
-      speechBox.style.left = leftBase - 20 + "px";
-    }
-    speechBox.style.top = topBase - 60 + "px";
   }
+  console.log(`GOAL: ${countTo}`);
 }
 
 // ----- FISH
