@@ -154,5 +154,11 @@ function manageCount() {
       fish.style.cursor = "default";
     }
     treatBag.style.cursor = "default";
+
+    // Change speech to heart
+    speechBox.innerHTML = "❤";
+    speechBox.style.left = leftBase - 30 + "px";
+    // Change image to happy cat
+    document.getElementById("cat").src = "./images/cat-happy.png";
   }
 }
