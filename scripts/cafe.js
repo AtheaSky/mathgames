@@ -17,6 +17,10 @@ const countTo = Math.floor(Math.random() * 12) + 1;
 console.log(`GOAL: ${countTo}`);
 
 function chooseMode(mode) {
+  // Hide mode label
+  document.getElementById("speechLabel").hidden = true;
+
+  // Show number
   if (mode == "+") {
     // Random number 1-countTo = x, remainder = y
     var x = Math.floor(Math.random() * countTo) + 1;

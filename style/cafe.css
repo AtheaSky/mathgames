@@ -49,6 +49,11 @@
   font-family: "Momo Trust Display", sans-serif;
   margin-bottom: 105px;
 }
+#speechLabel {
+  font-size: 24pt;
+  font-family: "Momo Trust Display", sans-serif;
+  margin-bottom: 175px;
+}
 
 img {
   -webkit-user-drag: none;
