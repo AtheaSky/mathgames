@@ -6,7 +6,8 @@ var topBase = (speechBounds.top + speechBounds.bottom) / 2;
 speechBox.style.left = leftBase - 50 + "px";
 speechBox.style.top = topBase - 110 + "px";
 
-var modeText = `<font size="6pt">Mode?</font><br>`;
+var modeText = "";
+// modeText += `<font size="6pt">Mode?</font><br>`;
 modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `;
 modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
 speechBox.innerHTML = modeText;
@@ -24,12 +25,12 @@ function chooseMode(mode) {
     speechBox.innerHTML = `${x} + ${y}`;
 
     // Fix location
-    if (x > 9 || y > 9) {
-      speechBox.style.left = leftBase - 80 + "px";
-    } else {
-      speechBox.style.left = leftBase - 72 + "px";
-    }
-    speechBox.style.top = topBase - 60 + "px";
+    // if (x > 9 || y > 9) {
+    //   speechBox.style.left = leftBase - 80 + "px";
+    // } else {
+    //   speechBox.style.left = leftBase - 72 + "px";
+    // }
+    // speechBox.style.top = topBase - 60 + "px";
   } else {
     speechBox.innerHTML = countTo;
 
@@ -157,7 +158,7 @@ function manageCount() {
 
     // Change speech to heart
     speechBox.innerHTML = "❤";
-    speechBox.style.left = leftBase - 30 + "px";
+    // speechBox.style.left = leftBase - 30 + "px";
     // Change image to happy cat
     document.getElementById("cat").src = "./images/cat-happy.png";
   }
