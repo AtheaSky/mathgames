@@ -307,6 +307,9 @@ function openVault() {
         confettiColors: ["#df0808ff", "#008000", "#0000ff"],
         confettiNumber: 150,
       });
+
+      // Open win modal
+      openWinModal();
     }, 4040);
   }
 }

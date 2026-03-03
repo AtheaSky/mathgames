@@ -79,7 +79,7 @@ function checkGameState(updatedCellNum, colClass) {
 
         // Get winner colour
         let winCol = window.getComputedStyle(
-          document.getElementById(`cell${updatedCellNum}`)
+          document.getElementById(`cell${updatedCellNum}`),
         ).backgroundColor;
         console.log(winCol);
 
@@ -88,6 +88,9 @@ function checkGameState(updatedCellNum, colClass) {
           confettiColors: [winCol],
           confettiNumber: 200,
         });
+
+        // Open win modal
+        openWinModal();
       }
     }
   }

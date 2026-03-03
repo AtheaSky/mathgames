@@ -154,5 +154,17 @@ function manageCount() {
     // speechBox.style.left = leftBase - 30 + "px";
     // Change image to happy cat
     document.getElementById("cat").src = "./images/cat-happy.png";
+
+    // Trigger confetti
+    const emojiConfetti = new JSConfetti();
+
+    emojiConfetti.addConfetti({
+      emojis: ["🐟"],
+      emojiSize: 40,
+      confettiNumber: 10,
+    });
+
+    // Open win modal
+    openWinModal();
   }
 }
