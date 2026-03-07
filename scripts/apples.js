@@ -1,5 +1,44 @@
+// -----SIGN SETUP
+var signBox = document.getElementById("signBox");
+var signBounds = document.getElementById("signImg").getBoundingClientRect();
+var leftBase = (signBounds.left + signBounds.right) / 2;
+var topBase = (signBounds.top + signBounds.bottom) / 2;
+signBox.style.left = leftBase - 50 + "px";
+signBox.style.top = topBase - 110 + "px";
+
+var modeText = "";
+// modeText += `<font size="6pt">Mode?</font><br>`;
+modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `;
+modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
+signBox.innerHTML = modeText;
+
+// Random number 1-12 inclusive
+var countTo;
+
+function chooseMode(mode) {
+  // Hide mode label
+  document.getElementById("signLabel").hidden = true;
+
+  // Show number
+  if (mode == "+") {
+    // Generate number 2-12 for addition
+    countTo = Math.floor(Math.random() * 11) + 2;
+
+    // Random number 1 - (countTo - 1) = x, remainder = y
+    var x = Math.floor(Math.random() * (countTo - 1)) + 1;
+    var y = countTo - x;
+
+    signBox.innerHTML = `${x} + ${y}`;
+  } else {
+    // Generate number 1-12 for regular
+    countTo = Math.floor(Math.random() * 12) + 1;
+    signBox.innerHTML = countTo;
+  }
+  console.log(`GOAL: ${countTo}`);
+}
+
 // Generate apple
-var container = document.getElementById("snackSpot");
+var container = document.getElementById("treeArea");
 // (max - min)
 var minWidth = document.body.offsetWidth / 2 + 80;
 var rangeWidth = document.body.offsetWidth - 150 - minWidth;

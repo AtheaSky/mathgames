@@ -21,21 +21,36 @@
   margin-bottom: 20px;
 }
 
-.speech {
+.sign {
   grid-area: a;
   margin: auto;
+  /* margin-top: 100px; */
+  color: #38271a;
 }
-.cat {
+.basket {
   grid-area: b;
   margin: auto;
+  margin-bottom: 50px;
 }
-.right {
+.tree {
   grid-area: c;
 }
 
 .movable {
   position: absolute;
   cursor: grab;
+}
+
+#signBox {
+  /* position: absolute; */
+  font-size: 46pt;
+  font-family: "Momo Trust Display", sans-serif;
+  margin-bottom: 105px;
+}
+#signLabel {
+  font-size: 24pt;
+  font-family: "Momo Trust Display", sans-serif;
+  margin-bottom: 162px;
 }
 
 img {
