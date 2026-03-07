@@ -1,3 +1,8 @@
+// Summon random cat
+var randCatNum = Math.floor(Math.random() * 2) + 1; // 1-2
+var catImgLoc = document.getElementById("cat");
+catImgLoc.src = `./images/cat${randCatNum}.png`;
+
 // ----- SETUP
 var speechBox = document.getElementById("speechBox");
 var speechBounds = document.getElementById("speechImg").getBoundingClientRect();
@@ -153,7 +158,7 @@ function manageCount() {
     speechBox.innerHTML = "❤";
     // speechBox.style.left = leftBase - 30 + "px";
     // Change image to happy cat
-    document.getElementById("cat").src = "./images/cat-happy.png";
+    document.getElementById("cat").src = `./images/cat${randCatNum}-happy.png`;
 
     // Trigger confetti
     const emojiConfetti = new JSConfetti();
