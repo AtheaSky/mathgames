@@ -1,7 +1,8 @@
-// Summon random cat
-var randCatNum = Math.floor(Math.random() * 2) + 1; // 1-2
-var catImgLoc = document.getElementById("cat");
-catImgLoc.src = `./images/cat${randCatNum}.png`;
+// Amount of image options that exist for each animal (SET MANUALLY)
+const variants = {
+  cat: 2,
+  hamster: 1,
+};
 
 // ----- SETUP
 var speechBox = document.getElementById("speechBox");
@@ -10,7 +11,32 @@ var leftBase = (speechBounds.left + speechBounds.right) / 2;
 var topBase = (speechBounds.top + speechBounds.bottom) / 2;
 speechBox.style.left = leftBase - 50 + "px";
 speechBox.style.top = topBase - 110 + "px";
+var petNum, petType, treatType;
 
+// Choose pet type
+const petModal = document.getElementById("petModal");
+petModal.style.display = "block";
+function choosePet(petChoice) {
+  petType = petChoice;
+
+  // Close modal
+  petModal.style.display = "none";
+
+  // Summon random pet of chosen type
+  petNum = Math.floor(Math.random() * variants[petType]) + 1; // 1-variants
+  const petImgLoc = document.getElementById("pet");
+  const petBagLoc = document.getElementById("treatBag");
+
+  petImgLoc.src = `./images/${petType}${petNum}.png`;
+  petBagLoc.src = `./images/${petType}_bag.png`;
+
+  // Show speech bubble & contents
+  document.getElementById("speechImg").hidden = false;
+  document.getElementById("speechBox").hidden = false;
+  document.getElementById("speechLabel").hidden = false;
+}
+
+// Choose mode & number goal
 var modeText = "";
 // modeText += `<font size="6pt">Mode?</font><br>`;
 modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `;
@@ -30,8 +56,8 @@ function chooseMode(mode) {
     countTo = Math.floor(Math.random() * 11) + 2;
 
     // Random number 1 - (countTo - 1) = x, remainder = y
-    var x = Math.floor(Math.random() * (countTo - 1)) + 1;
-    var y = countTo - x;
+    const x = Math.floor(Math.random() * (countTo - 1)) + 1;
+    const y = countTo - x;
 
     speechBox.innerHTML = `${x} + ${y}`;
   } else {
@@ -42,40 +68,40 @@ function chooseMode(mode) {
   console.log(`GOAL: ${countTo}`);
 }
 
-// ----- FISH
+// ----- TREAT
 var playState = true;
 
-// Create fish when treat bag clicked
-var snackSpot = document.getElementById("snackSpot");
-var treatBag = document.getElementById("treatBag");
+// Create treat when treat bag clicked
+const snackSpot = document.getElementById("snackSpot");
+const treatBag = document.getElementById("treatBag");
 
 var nextID = 0;
 function createTreat(e) {
   if (playState) {
-    snackSpot.innerHTML += `<img src="./images/snack.png" width="100px" class="movable" id="fish${nextID}" draggable="false" />`;
-    var newFish = document.getElementById(`fish${nextID}`);
+    snackSpot.innerHTML += `<img src="./images/${petType}_treat.png" width="100px" class="movable" id="treat${nextID}" draggable="false" />`;
+    var newTreat = document.getElementById(`treat${nextID}`);
 
-    var treatDimensions = treatBag.getBoundingClientRect();
+    const treatDimensions = treatBag.getBoundingClientRect();
 
-    newFish.style.left = treatDimensions.left - 130 + "px";
-    newFish.style.top = treatDimensions.top + 130 + "px";
+    newTreat.style.left = treatDimensions.left - 130 + "px";
+    newTreat.style.top = treatDimensions.top + 130 + "px";
     nextID++;
 
-    fish = document.getElementsByClassName("movable");
-    for (snack of fish) snack.onmousedown = dragElement;
+    treat = document.getElementsByClassName("movable");
+    for (snack of treat) snack.onmousedown = dragElement;
   }
 }
 
-var activeFish = "";
+var activeTreat = "";
 
-// Movable fish
+// Movable treat
 function dragElement(e) {
   if (playState) {
     e.preventDefault();
-    activeFish = e.target;
+    activeTreat = e.target;
 
     // Set cursor to grabbing while clicked
-    activeFish.style.cursor = "grabbing";
+    activeTreat.style.cursor = "grabbing";
 
     // Handling
     var pos1 = 0,
@@ -98,8 +124,8 @@ function dragElement(e) {
       pos3 = e.clientX;
       pos4 = e.clientY;
       // set the element's new position:
-      activeFish.style.top = activeFish.offsetTop - pos2 + "px";
-      activeFish.style.left = activeFish.offsetLeft - pos1 + "px";
+      activeTreat.style.top = activeTreat.offsetTop - pos2 + "px";
+      activeTreat.style.left = activeTreat.offsetLeft - pos1 + "px";
     }
 
     function closeDragElement() {
@@ -109,62 +135,71 @@ function dragElement(e) {
       document.onmousemove = null;
 
       // Set cursor back to to grab when released
-      activeFish.style.cursor = "grab";
+      activeTreat.style.cursor = "grab";
 
-      // Count fish in bowl
+      // Count treats in bowl
       manageCount();
     }
   }
 }
 
 function manageCount() {
-  var catBounds = document.getElementById("cat").getBoundingClientRect();
-  var validFish = 0;
-  // Cat-top = 250
-  // Cat-right = 808
-  // Cat-bottom = 579
-  // Cat-left = 588
+  const petBounds = document.getElementById("pet").getBoundingClientRect();
+  var validTreat = 0;
+  // Pet-top = 250
+  // Pet-right = 808
+  // Pet-bottom = 579
+  // Pet-left = 588
 
-  // Update valid count for each existing movable fish
-  // Fish-top is above cat-bottom
-  // Fish-right is right of cat-left
-  // Fish-bottom is below cat-top
-  // Fish-left is left of cat-right
-  for (fish of document.getElementsByClassName("movable")) {
-    var fishBounds = fish.getBoundingClientRect();
+  // Update valid count for each existing movable treat
+  // Treat-top is above pet-bottom
+  // Treat-right is right of pet-left
+  // Treat-bottom is below pet-top
+  // Treat-left is left of pet-right
+  for (treat of document.getElementsByClassName("movable")) {
+    var treatBounds = treat.getBoundingClientRect();
     if (
-      fishBounds.top <= catBounds.bottom &&
-      fishBounds.right >= catBounds.left &&
-      fishBounds.bottom >= catBounds.top &&
-      fishBounds.left <= catBounds.right
+      treatBounds.top <= petBounds.bottom &&
+      treatBounds.right >= petBounds.left &&
+      treatBounds.bottom >= petBounds.top &&
+      treatBounds.left <= petBounds.right
     ) {
-      validFish++;
+      validTreat++;
     }
   }
-  console.log(validFish);
+  console.log(validTreat);
 
-  // If valid fish equals countTo, WIN
-  if (validFish == countTo) {
+  // If valid treat equals countTo, WIN
+  if (validTreat == countTo) {
     console.log("Win");
-    // Make fish unmovable
+    // Make treat unmovable
     playState = false;
     // Change cursor to default for treats and bag
-    for (fish of document.getElementsByClassName("movable")) {
-      fish.style.cursor = "default";
+    for (treat of document.getElementsByClassName("movable")) {
+      treat.style.cursor = "default";
     }
     treatBag.style.cursor = "default";
 
     // Change speech to heart
     speechBox.innerHTML = "❤";
     // speechBox.style.left = leftBase - 30 + "px";
-    // Change image to happy cat
-    document.getElementById("cat").src = `./images/cat${randCatNum}-happy.png`;
+    // Change image to happy pet
+    document.getElementById("pet").src =
+      `./images/${petType}${petNum}_happy.png`;
 
     // Trigger confetti
     const emojiConfetti = new JSConfetti();
 
+    // Choose emoji for animal
+    var emoji;
+    if (petType == "cat") {
+      emoji = "🐟";
+    } else if (petType == "hamster") {
+      emoji = "🌻";
+    }
+
     emojiConfetti.addConfetti({
-      emojis: ["🐟"],
+      emojis: [emoji],
       emojiSize: 40,
       confettiNumber: 10,
     });

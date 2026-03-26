@@ -9,7 +9,7 @@
     "b c";
 
   /* Gameboard */
-  background-image: url("../images/cat_cafe_background.png");
+  background-image: url("../images/pet_cafe_bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -25,7 +25,7 @@
   grid-area: a;
   margin: auto;
 }
-.cat {
+.pet {
   grid-area: b;
   margin: auto;
 }
@@ -52,7 +52,7 @@
 #speechLabel {
   font-size: 24pt;
   font-family: "Momo Trust Display", sans-serif;
-  margin-bottom: 175px;
+  margin-bottom: 170px;
 }
 
 img {
