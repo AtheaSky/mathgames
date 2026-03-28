@@ -15,8 +15,8 @@ var petNum, petType, treatType;
 
 // Choose mode & number goal
 var modeText = "";
-modeText += `<span onclick="chooseMode('#')" class="btn">#</span> `;
-modeText += `<span onclick="chooseMode('+')" class="btn">+</span>`;
+modeText += `<span onclick="chooseMode('#')" class="btn clickVan">#</span> `;
+modeText += `<span onclick="chooseMode('+')" class="btn clickVan">+</span>`;
 speechBox.innerHTML = modeText;
 
 // ----- CUSTOM CURSOR
@@ -53,6 +53,13 @@ document.querySelectorAll(".btn").forEach((btn) => {
 });
 document.querySelectorAll(".btn").forEach((btn) => {
   btn.addEventListener("mouseout", () => {
+    cursor.style.backgroundImage = 'url("./images/default.png")';
+  });
+});
+
+// Click vanishers revert when clicked
+document.querySelectorAll(".clickVan").forEach((btn) => {
+  btn.addEventListener("mousedown", () => {
     cursor.style.backgroundImage = 'url("./images/default.png")';
   });
 });
@@ -137,6 +144,18 @@ function createTreat(e) {
 
     treat = document.getElementsByClassName("movable");
     for (snack of treat) snack.onmousedown = dragElement;
+
+    // Cursor
+    document.querySelectorAll(".movable").forEach((btn) => {
+      btn.addEventListener("mouseenter", () => {
+        cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+      });
+    });
+    document.querySelectorAll(".movable").forEach((btn) => {
+      btn.addEventListener("mouseout", () => {
+        cursor.style.backgroundImage = 'url("./images/default.png")';
+      });
+    });
   }
 }
 
