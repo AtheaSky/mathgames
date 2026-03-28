@@ -29,13 +29,14 @@
   </head>
 
   <body>
+    <div class="cursor"></div>
     <div class="modal" id="petModal">
       <div class="modal-content">
         <p>Visit which café?</p>
-        <span class="modalBtn" class="petChoice" onClick="choosePet('cat')"
+        <span class="modalBtn btn petChoice" onClick="choosePet('cat')"
           >Cat</span
         >
-        <span class="modalBtn" class="petChoice" onClick="choosePet('hamster')"
+        <span class="modalBtn btn petChoice" onClick="choosePet('hamster')"
           >Hamster</span
         >
       </div>
@@ -58,6 +59,7 @@
       <div class="right">
         <img
           id="treatBag"
+          class="btn"
           width="150px"
           draggable="false"
           onclick="createTreat()"

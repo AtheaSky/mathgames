@@ -4,7 +4,7 @@ const variants = {
   hamster: 1,
 };
 
-// ----- SETUP
+// ----- ENVIRONMENT SETUP
 var speechBox = document.getElementById("speechBox");
 var speechBounds = document.getElementById("speechImg").getBoundingClientRect();
 var leftBase = (speechBounds.left + speechBounds.right) / 2;
@@ -13,6 +13,53 @@ speechBox.style.left = leftBase - 50 + "px";
 speechBox.style.top = topBase - 110 + "px";
 var petNum, petType, treatType;
 
+// Choose mode & number goal
+var modeText = "";
+modeText += `<span onclick="chooseMode('#')" class="btn" style="cursor: pointer;">#</span> `;
+modeText += `<span onclick="chooseMode('+')" class="btn" style="cursor: pointer;">+</span>`;
+speechBox.innerHTML = modeText;
+
+// ----- CUSTOM CURSOR
+const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", function (e) {
+  // Make sure large cursor aligns with real cursor
+  var xAdj = -1,
+    yAdj = 0;
+  if (cursor.style.backgroundImage == 'url("./images/pointer.png")') {
+    xAdj = -15;
+    yAdj = 0;
+  } else if (
+    cursor.style.backgroundImage == 'url("./images/grab-open.png")' ||
+    cursor.style.backgroundImage == 'url("./images/grab-closed.png")'
+  ) {
+    xAdj = -20;
+    yAdj = -20;
+  } else {
+    xAdj = -1;
+    yAdj = 0;
+  }
+
+  // Follow mouse
+  cursor.style.left = e.clientX + xAdj + "px";
+  cursor.style.top = e.clientY + yAdj + "px";
+});
+
+// Buttons pointer toggle
+document.querySelectorAll(".btn").forEach((btn) => {
+  btn.addEventListener("mouseenter", () => {
+    cursor.style.backgroundImage = 'url("./images/pointer.png")';
+  });
+});
+document.querySelectorAll(".btn").forEach((btn) => {
+  btn.addEventListener("mouseout", () => {
+    cursor.style.backgroundImage = 'url("./images/default.png")';
+  });
+});
+
+// Treat
+
+// ----- GAME SETUP
 // Choose pet type
 const petModal = document.getElementById("petModal");
 petModal.style.display = "block";
@@ -35,13 +82,6 @@ function choosePet(petChoice) {
   document.getElementById("speechBox").hidden = false;
   document.getElementById("speechLabel").hidden = false;
 }
-
-// Choose mode & number goal
-var modeText = "";
-// modeText += `<font size="6pt">Mode?</font><br>`;
-modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `;
-modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
-speechBox.innerHTML = modeText;
 
 // Random number 1-12 inclusive
 var countTo;
@@ -81,6 +121,14 @@ function createTreat(e) {
     snackSpot.innerHTML += `<img src="./images/${petType}_treat.png" width="100px" class="movable" id="treat${nextID}" draggable="false" />`;
     var newTreat = document.getElementById(`treat${nextID}`);
 
+    // Assign cursor
+    newTreat.addEventListener("mouseenter", () => {
+      cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+    });
+    newTreat.addEventListener("mouseout", () => {
+      cursor.style.backgroundImage = 'url("./images/default.png")';
+    });
+
     const treatDimensions = treatBag.getBoundingClientRect();
 
     newTreat.style.left = treatDimensions.left - 130 + "px";
@@ -102,6 +150,7 @@ function dragElement(e) {
 
     // Set cursor to grabbing while clicked
     activeTreat.style.cursor = "grabbing";
+    cursor.style.backgroundImage = 'url("./images/grab-closed.png")';
 
     // Handling
     var pos1 = 0,
@@ -136,6 +185,7 @@ function dragElement(e) {
 
       // Set cursor back to to grab when released
       activeTreat.style.cursor = "grab";
+      cursor.style.backgroundImage = 'url("./images/grab-open.png")';
 
       // Count treats in bowl
       manageCount();

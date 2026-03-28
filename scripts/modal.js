@@ -1,10 +1,10 @@
 const winModal = `<div class="modal" id="winModal"> \
     <div class="modal-content"> \
     <p>Congratulations!</p> \
-    <a href="./index.html" class="modalBtn" id="homeBtn">Home</a> \
+    <a href="./index.html" class="modalBtn btn" id="homeBtn">Home</a> \
     <span \
         onClick="window.location.reload();" \
-        class="modalBtn" \
+        class="modalBtn btn" \
         id="replayBtn"> \
         Replay \
         </span> \

@@ -1,3 +1,21 @@
+/* Cursor */
+/* body {
+  cursor: none;
+} */
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/default.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  pointer-events: none; /* Ensure the custom cursor doesn't interfere with content */
+  z-index: 5;
+}
+
 /* Grid */
 .gridwrap {
   /* Grid */
