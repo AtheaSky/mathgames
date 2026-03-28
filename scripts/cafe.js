@@ -15,8 +15,8 @@ var petNum, petType, treatType;
 
 // Choose mode & number goal
 var modeText = "";
-modeText += `<span onclick="chooseMode('#')" class="btn" style="cursor: pointer;">#</span> `;
-modeText += `<span onclick="chooseMode('+')" class="btn" style="cursor: pointer;">+</span>`;
+modeText += `<span onclick="chooseMode('#')" class="btn">#</span> `;
+modeText += `<span onclick="chooseMode('+')" class="btn">+</span>`;
 speechBox.innerHTML = modeText;
 
 // ----- CUSTOM CURSOR
@@ -149,7 +149,6 @@ function dragElement(e) {
     activeTreat = e.target;
 
     // Set cursor to grabbing while clicked
-    activeTreat.style.cursor = "grabbing";
     cursor.style.backgroundImage = 'url("./images/grab-closed.png")';
 
     // Handling
@@ -184,7 +183,6 @@ function dragElement(e) {
       document.onmousemove = null;
 
       // Set cursor back to to grab when released
-      activeTreat.style.cursor = "grab";
       cursor.style.backgroundImage = 'url("./images/grab-open.png")';
 
       // Count treats in bowl

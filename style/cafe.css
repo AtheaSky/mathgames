@@ -1,7 +1,9 @@
 /* Cursor */
-/* body {
+body,
+body:hover {
   cursor: none;
-} */
+}
+
 .cursor {
   position: absolute;
   top: 0;
@@ -53,12 +55,12 @@
   margin-bottom: 5%;
 }
 
-#treatBag:hover {
+/* #treatBag:hover {
   cursor: pointer;
-}
+} */
 .movable {
   position: absolute;
-  cursor: grab;
+  /* cursor: grab; */
 }
 
 #speechBox {
@@ -79,4 +81,9 @@ img {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+
+.modalBtn,
+.modalBtn:hover {
+  cursor: none;
 }
