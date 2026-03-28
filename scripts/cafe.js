@@ -1,7 +1,7 @@
 // Amount of image options that exist for each animal (SET MANUALLY)
 const variants = {
-  cat: 2,
-  hamster: 1,
+  cat: 3,
+  hamster: 2,
 };
 
 // ----- ENVIRONMENT SETUP
