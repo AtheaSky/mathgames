@@ -47,63 +47,65 @@ function chooseMode(mode) {
 
 // ----- Canvas
 const field = new Image();
-field.crossOrigin = "anonymous";
-const canvas = document.createElement("canvas");
-const context = canvas.getContext("2d");
+field.onload = function () {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
 
-canvas.width = field.width;
-canvas.height = field.height;
+  canvas.width = field.width;
+  canvas.height = field.height;
 
-context.drawImage(field, 0, 0);
+  context.drawImage(field, 0, 0);
 
-// ----- Generate apples
-var container = document.getElementById("treeArea");
-// (max - min)
-var minWidth = document.body.offsetWidth / 2 + 80;
-var rangeWidth = document.body.offsetWidth - 150 - minWidth;
+  // ----- Generate apples
+  var container = document.getElementById("treeArea");
+  // (max - min)
+  var minWidth = document.body.offsetWidth / 2 + 80;
+  var rangeWidth = document.body.offsetWidth - 150 - minWidth;
 
-var minHeight = 150;
-var rangeHeight = document.body.offsetHeight - 100 - minHeight;
+  var minHeight = 150;
+  var rangeHeight = document.body.offsetHeight - 100 - minHeight;
 
-// ----- Create apples with random locations
-// Create
-for (var i = 0; i < 10; i++) {
-  container.innerHTML += `<img src="./images/apple.png" width="45px" class="movable" id="apple${i}" draggable="false" />`;
-  var newApple = document.getElementById(`apple${i}`);
+  // ----- Create apples with random locations
+  // Create
+  for (var i = 0; i < 10; i++) {
+    container.innerHTML += `<img src="./images/apple.png" width="45px" class="movable" id="apple${i}" draggable="false" />`;
+    var newApple = document.getElementById(`apple${i}`);
 
-  var maxAtmp = 20;
-  var atmp = 0;
-  while (atmp < maxAtmp) {
-    atmp += 1;
-    // Position
-    var x = Math.round(Math.random() * rangeWidth + minWidth);
-    var y = Math.round(Math.random() * rangeHeight + minHeight);
+    var maxAtmp = 20;
+    var atmp = 0;
+    while (atmp < maxAtmp) {
+      atmp += 1;
+      // Position
+      var x = Math.round(Math.random() * rangeWidth + minWidth);
+      var y = Math.round(Math.random() * rangeHeight + minHeight);
 
-    const data = context.getImageData(x, y, 1, 1).data;
-    var halfApple = 23;
-    var r = data[0] - halfApple;
-    var g = data[1] - halfApple;
-    var b = data[2] - halfApple;
-    if (
-      r >= rMin &&
-      r <= rMax &&
-      g >= gMin &&
-      g <= gMax &&
-      b >= bMin &&
-      b <= bMax
-    ) {
+      const data = context.getImageData(x, y, 1, 1).data;
+      var halfApple = 23;
+      var r = data[0] - halfApple;
+      var g = data[1] - halfApple;
+      var b = data[2] - halfApple;
       console.log(`R${data[0]} G${data[1]} B${data[2]}`);
-      break;
+      if (
+        r >= rMin &&
+        r <= rMax &&
+        g >= gMin &&
+        g <= gMax &&
+        b >= bMin &&
+        b <= bMax
+      ) {
+        console.log(`RGB success`);
+        break;
+      }
     }
-  }
-  if (atmp >= maxAtmp) {
-    console.log(`Aborting attempts for apple ${i + 1}`);
-  }
+    if (atmp >= maxAtmp) {
+      console.log(`Aborting attempts for apple ${i + 1}`);
+    }
 
-  // Place
-  newApple.style.left = x + "px";
-  newApple.style.top = y + "px";
-}
+    // Place
+    newApple.style.left = x + "px";
+    newApple.style.top = y + "px";
+  }
+};
 
 apple = document.getElementsByClassName("movable");
 for (snack of apple) snack.onmousedown = dragElement;
