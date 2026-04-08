@@ -24,7 +24,6 @@
 .sign {
   grid-area: a;
   margin: auto;
-  /* margin-top: 100px; */
   color: #38271a;
 }
 .basket {
@@ -42,15 +41,16 @@
 }
 
 #signBox {
-  /* position: absolute; */
   font-size: 46pt;
   font-family: "Momo Trust Display", sans-serif;
-  margin-bottom: 105px;
+  margin-bottom: 120px;
 }
 #signLabel {
+  position: absolute;
   font-size: 24pt;
   font-family: "Momo Trust Display", sans-serif;
-  margin-bottom: 162px;
+  margin-left: 120px;
+  margin-top: 100px;
 }
 
 img {

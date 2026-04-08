@@ -21,8 +21,8 @@ function chooseMode(mode) {
 
   // Show number
   if (mode == "+") {
-    // Generate number 2-12 for addition
-    countTo = Math.floor(Math.random() * 11) + 2;
+    // Generate number 2-10 for addition
+    countTo = Math.floor(Math.random() * 9) + 2;
 
     // Random number 1 - (countTo - 1) = x, remainder = y
     var x = Math.floor(Math.random() * (countTo - 1)) + 1;
@@ -30,8 +30,8 @@ function chooseMode(mode) {
 
     signBox.innerHTML = `${x} + ${y}`;
   } else {
-    // Generate number 1-12 for regular
-    countTo = Math.floor(Math.random() * 12) + 1;
+    // Generate number 1-10 for regular
+    countTo = Math.floor(Math.random() * 10) + 1;
     signBox.innerHTML = countTo;
   }
   console.log(`GOAL: ${countTo}`);
