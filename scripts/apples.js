@@ -12,6 +12,14 @@ modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `
 modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
 signBox.innerHTML = modeText;
 
+// Allowed colours
+const rMin = 35;
+const rMax = 90;
+const gMin = 100;
+const gMax = 200;
+const bMin = 50;
+const bMax = 130;
+
 // Random number 1-12 inclusive
 var countTo;
 
@@ -37,7 +45,18 @@ function chooseMode(mode) {
   console.log(`GOAL: ${countTo}`);
 }
 
-// Generate apple
+// ----- Canvas
+const field = new Image();
+field.crossOrigin = "anonymous";
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+
+canvas.width = field.width;
+canvas.height = field.height;
+
+context.drawImage(field, 0, 0);
+
+// ----- Generate apples
 var container = document.getElementById("treeArea");
 // (max - min)
 var minWidth = document.body.offsetWidth / 2 + 80;
@@ -46,14 +65,44 @@ var rangeWidth = document.body.offsetWidth - 150 - minWidth;
 var minHeight = 150;
 var rangeHeight = document.body.offsetHeight - 100 - minHeight;
 
-// Create apples with random locations
+// ----- Create apples with random locations
+// Create
 for (var i = 0; i < 10; i++) {
   container.innerHTML += `<img src="./images/apple.png" width="45px" class="movable" id="apple${i}" draggable="false" />`;
   var newApple = document.getElementById(`apple${i}`);
-  newApple.style.left =
-    Math.round(Math.random() * rangeWidth + minWidth) + "px";
-  newApple.style.top =
-    Math.round(Math.random() * rangeHeight + minHeight) + "px";
+
+  var maxAtmp = 20;
+  var atmp = 0;
+  while (atmp < maxAtmp) {
+    atmp += 1;
+    // Position
+    var x = Math.round(Math.random() * rangeWidth + minWidth);
+    var y = Math.round(Math.random() * rangeHeight + minHeight);
+
+    const data = context.getImageData(x, y, 1, 1).data;
+    var halfApple = 23;
+    var r = data[0] - halfApple;
+    var g = data[1] - halfApple;
+    var b = data[2] - halfApple;
+    if (
+      r >= rMin &&
+      r <= rMax &&
+      g >= gMin &&
+      g <= gMax &&
+      b >= bMin &&
+      b <= bMax
+    ) {
+      console.log(`R${data[0]} G${data[1]} B${data[2]}`);
+      break;
+    }
+  }
+  if (atmp >= maxAtmp) {
+    console.log(`Aborting attempts for apple ${i + 1}`);
+  }
+
+  // Place
+  newApple.style.left = x + "px";
+  newApple.style.top = y + "px";
 }
 
 apple = document.getElementsByClassName("movable");
@@ -65,7 +114,6 @@ var activeApple = "";
 function dragElement(e) {
   e.preventDefault();
   activeApple = e.target;
-  console.log(activeApple);
 
   // Set cursor to grabbing while clicked
   activeApple.style.cursor = "grabbing";
