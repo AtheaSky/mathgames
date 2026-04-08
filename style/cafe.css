@@ -87,3 +87,9 @@ img {
 .modalBtn:hover {
   cursor: none;
 }
+
+.petChoice {
+  margin: auto;
+  max-width: 80px;
+  margin-bottom: 5px;
+}
