@@ -12,14 +12,6 @@ modeText += `<span onclick="chooseMode('#')" style="cursor: pointer;">#</span> `
 modeText += `<span onclick="chooseMode('+')" style="cursor: pointer;">+</span>`;
 signBox.innerHTML = modeText;
 
-// Allowed colours
-const rMin = 35;
-const rMax = 90;
-const gMin = 100;
-const gMax = 200;
-const bMin = 50;
-const bMax = 130;
-
 // Random number 1-12 inclusive
 var countTo;
 
@@ -66,6 +58,14 @@ field.onload = function () {
   var minHeight = 150;
   var rangeHeight = document.body.offsetHeight - 100 - minHeight;
 
+  // Allowed colours
+  const rMin = 30;
+  const rMax = 90;
+  const gMin = 100;
+  const gMax = 200;
+  const bMin = 50;
+  const bMax = 130;
+
   // ----- Create apples with random locations
   // Create
   for (var i = 0; i < 10; i++) {
@@ -85,7 +85,9 @@ field.onload = function () {
       var r = data[0] - halfApple;
       var g = data[1] - halfApple;
       var b = data[2] - halfApple;
-      console.log(`R${data[0]} G${data[1]} B${data[2]}`);
+      console.log(
+        `Apple${i + 1} Attempt${atmp}: R${data[0]} G${data[1]} B${data[2]}`,
+      );
       if (
         r >= rMin &&
         r <= rMax &&
