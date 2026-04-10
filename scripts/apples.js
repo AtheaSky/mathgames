@@ -66,13 +66,18 @@ field.onload = function () {
   const bMin = 50;
   const bMax = 130;
 
+  //DEBUG----------
+  document.addEventListener("mousemove", function (e) {
+    console.log(`x${e.clientX} y${e.clientY}`);
+  });
+  //---
   // ----- Create apples with random locations
   // Create
   for (var i = 0; i < 10; i++) {
     container.innerHTML += `<img src="./images/apple.png" width="45px" class="movable" id="apple${i}" draggable="false" />`;
     var newApple = document.getElementById(`apple${i}`);
 
-    var maxAtmp = 20;
+    var maxAtmp = 5;
     var atmp = 0;
     while (atmp < maxAtmp) {
       atmp += 1;
@@ -88,10 +93,6 @@ field.onload = function () {
       console.log(
         `Apple${i + 1} Attempt${atmp}: R${data[0]} G${data[1]} B${data[2]}`,
       );
-      // Place pixel to visualise
-      context.fillStyle = "rgba(" + 255 + "," + 0 + "," + 0 + "," + 1 + ")";
-      context.fillRect(x, y, 1, 1);
-      //
       if (
         r >= rMin &&
         r <= rMax &&
@@ -109,8 +110,8 @@ field.onload = function () {
     }
 
     // Place
-    newApple.style.left = x + "px";
-    newApple.style.top = y + "px";
+    // newApple.style.left = x + "px";
+    // newApple.style.top = y + "px";
   }
 };
 
