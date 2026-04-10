@@ -88,6 +88,10 @@ field.onload = function () {
       console.log(
         `Apple${i + 1} Attempt${atmp}: R${data[0]} G${data[1]} B${data[2]}`,
       );
+      // Place pixel to visualise
+      ctx.fillStyle = "rgba(" + 255 + "," + 0 + "," + 0 + "," + a / 255 + ")";
+      ctx.fillRect(x, y, 1, 1);
+      //
       if (
         r >= rMin &&
         r <= rMax &&
