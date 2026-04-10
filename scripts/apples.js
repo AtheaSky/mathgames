@@ -91,7 +91,7 @@ field.onload = function () {
       var g = data[1] - halfApple;
       var b = data[2] - halfApple;
       console.log(
-        `Apple${i + 1} Attempt${atmp}: R${data[0]} G${data[1]} B${data[2]}`,
+        `Apple${i + 1} Attempt${atmp}: R${data[0]} G${data[1]} B${data[2]} AT x${x} y${y}}`,
       );
       if (
         r >= rMin &&
