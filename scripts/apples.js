@@ -226,6 +226,9 @@ function manageCount() {
       appleBounds.left <= basketBounds.right
     ) {
       validApple++;
+      apple.style.opacity = "0.75";
+    } else {
+      apple.style.opacity = "1";
     }
   }
   console.log(validApple);
