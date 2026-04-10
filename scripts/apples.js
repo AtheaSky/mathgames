@@ -39,18 +39,12 @@ function chooseMode(mode) {
 
 // ----- Generate apples
 var container = document.getElementById("treeArea");
-// (max - min)
-var minWidth = document.body.offsetWidth / 2 + 80;
-var rangeWidth = document.body.offsetWidth - 150 - minWidth;
+var minWidth = document.body.offsetWidth / 2 + 150;
+var rangeWidth = document.body.offsetWidth - 200 - minWidth;
 
 var minHeight = 150;
 var rangeHeight = document.body.offsetHeight - 100 - minHeight;
 
-//DEBUG----------
-document.addEventListener("mousemove", function (e) {
-  console.log(`x${e.clientX} y${e.clientY}`);
-});
-//---
 // ----- Create apples with random locations
 // Create
 for (var i = 0; i < 10; i++) {
@@ -61,9 +55,35 @@ for (var i = 0; i < 10; i++) {
   var x = Math.round(Math.random() * rangeWidth + minWidth);
   var y = Math.round(Math.random() * rangeHeight + minHeight);
 
+  // ----- Adjust
+  // If highter void, raise
+  if (y > 380 && y < 480) {
+    // console.log(`Raising #${i + 1} to y${y - 100}`);
+    y -= 100;
+    // If lower void, lower
+  } else if (y > 480 && y < 570) {
+    // console.log(`Lowering #${i + 1} to y${y + 70}`);
+    y += 70;
+    if (x < 1233) {
+      y += 20;
+    }
+  }
+  // If floating corner, move
+  // Top left
+  if (y < 250 && x < 1000) {
+    console.log(`Moving #${i + 1} from top left`);
+    y += 100;
+    // Top right
+  } else if (y < 230 && x > 1250) {
+    console.log(`Moving #${i + 1} from top right`);
+    x -= 50;
+    y += 20;
+  }
+
   // Place
   newApple.style.left = x + "px";
   newApple.style.top = y + "px";
+  console.log(`Placed apple ${i + 1} at x${x} y${y}`);
 }
 
 apple = document.getElementsByClassName("movable");
