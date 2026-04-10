@@ -83,7 +83,7 @@ for (var i = 0; i < 10; i++) {
   // Place
   newApple.style.left = x + "px";
   newApple.style.top = y + "px";
-  console.log(`Placed apple ${i + 1} at x${x} y${y}`);
+  // console.log(`Placed apple ${i + 1} at x${x} y${y}`);
 }
 
 apple = document.getElementsByClassName("movable");
@@ -131,5 +131,60 @@ function dragElement(e) {
 
     // Set cursor back to to grab when released
     activeApple.style.cursor = "grab";
+
+    // Count apples in basket
+    manageCount();
+  }
+}
+
+function manageCount() {
+  const basketBounds = document
+    .getElementById("basket")
+    .getBoundingClientRect();
+  var validApple = 0;
+  // Basket-top = 546
+  // Basket-right = 736
+  // Basket-bottom = 659
+  // Basket-left = 486
+
+  // Update valid count for each existing movable apple
+  // Apple-top is above basket-bottom
+  // Apple-right is right of basket-left
+  // Apple-bottom is below basket-top
+  // Apple-left is left of basket-right
+  for (apple of document.getElementsByClassName("movable")) {
+    var appleBounds = apple.getBoundingClientRect();
+    if (
+      appleBounds.top <= basketBounds.bottom &&
+      appleBounds.right >= basketBounds.left &&
+      appleBounds.bottom >= basketBounds.top &&
+      appleBounds.left <= basketBounds.right
+    ) {
+      validApple++;
+    }
+  }
+  console.log(validApple);
+
+  // If valid apple equals countTo, WIN
+  if (validApple == countTo) {
+    console.log("Win");
+    // Make apple unmovable
+    playState = false;
+    // Change cursor to default for apples
+    for (apple of document.getElementsByClassName("movable")) {
+      apple.style.cursor = "default";
+    }
+
+    // Trigger confetti
+    const emojiConfetti = new JSConfetti();
+
+    emojiConfetti.addConfetti({
+      emojis: ["🍎"],
+      emojiSize: 40,
+      confettiNumber: 10,
+    });
+
+    // Open win modal
+    openWinModal();
   }
 }
