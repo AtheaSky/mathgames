@@ -1,7 +1,8 @@
 // Amount of image options that exist for each animal (SET MANUALLY)
 const variants = {
-  cat: 3,
-  hamster: 2,
+  cat: 4,
+  hamster: 3,
+  bird: 4,
 };
 
 // ----- ENVIRONMENT SETUP
@@ -261,7 +262,7 @@ function manageCount() {
     var emoji;
     if (petType == "cat") {
       emoji = "🐟";
-    } else if (petType == "hamster") {
+    } else if (petType == "hamster" || petType == "bird") {
       emoji = "🌻";
     }
 
