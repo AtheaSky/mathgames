@@ -1,0 +1,47 @@
+/* Grid */
+.gridwrap {
+  /* Grid */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "a a b"
+    "a a b";
+
+  /* Gameboard */
+  background-image: url("../images/fish_background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  height: 600px;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.left {
+  grid-area: a;
+}
+
+.right {
+  grid-area: b;
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+table {
+  margin: auto;
+  font-size: 20pt;
+  margin-left: 60px;
+  margin-top: 60px;
+}
+td {
+  width: 225px;
+  height: 225px;
+}
+td img {
+  width: 100px;
+  cursor: pointer;
+}
