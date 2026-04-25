@@ -23,25 +23,37 @@
 
 .left {
   grid-area: a;
+  margin: auto;
 }
 
 .right {
   grid-area: b;
   margin: auto;
-  margin-bottom: 5%;
 }
 
-table {
+#fishTable {
   margin: auto;
   font-size: 20pt;
   margin-left: 60px;
   margin-top: 60px;
 }
-td {
+#fishTable td {
   width: 225px;
   height: 225px;
 }
-td img {
+#fishTable td img {
   width: 100px;
   cursor: pointer;
+}
+
+#cardTable {
+  font-size: 20pt;
+}
+#cardTable td {
+  margin-left: 20px;
+  width: 100px;
+  height: 100px;
+}
+#cardTable td img {
+  width: 90px;
 }

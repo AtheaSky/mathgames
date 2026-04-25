@@ -21,49 +21,49 @@ modeText += `<span onclick="chooseMode('+')" class="btn clickVan">+</span>`;
 speechBox.innerHTML = modeText;
 
 // ----- CUSTOM CURSOR
-const cursor = document.querySelector(".cursor");
+// const cursor = document.querySelector(".cursor");
 
-document.addEventListener("mousemove", function (e) {
-  // Make sure large cursor aligns with real cursor
-  var xAdj = -1,
-    yAdj = 0;
-  if (cursor.style.backgroundImage == 'url("./images/pointer.png")') {
-    xAdj = -15;
-    yAdj = 0;
-  } else if (
-    cursor.style.backgroundImage == 'url("./images/grab-open.png")' ||
-    cursor.style.backgroundImage == 'url("./images/grab-closed.png")'
-  ) {
-    xAdj = -20;
-    yAdj = -20;
-  } else {
-    xAdj = -1;
-    yAdj = 0;
-  }
+// document.addEventListener("mousemove", function (e) {
+//   // Make sure large cursor aligns with real cursor
+//   var xAdj = -1,
+//     yAdj = 0;
+//   if (cursor.style.backgroundImage == 'url("./images/pointer.png")') {
+//     xAdj = -15;
+//     yAdj = 0;
+//   } else if (
+//     cursor.style.backgroundImage == 'url("./images/grab-open.png")' ||
+//     cursor.style.backgroundImage == 'url("./images/grab-closed.png")'
+//   ) {
+//     xAdj = -20;
+//     yAdj = -20;
+//   } else {
+//     xAdj = -1;
+//     yAdj = 0;
+//   }
 
-  // Follow mouse
-  cursor.style.left = e.clientX + xAdj + "px";
-  cursor.style.top = e.clientY + yAdj + "px";
-});
+//   // Follow mouse
+//   cursor.style.left = e.clientX + xAdj + "px";
+//   cursor.style.top = e.clientY + yAdj + "px";
+// });
 
-// Buttons pointer toggle
-document.querySelectorAll(".btn").forEach((btn) => {
-  btn.addEventListener("mouseenter", () => {
-    cursor.style.backgroundImage = 'url("./images/pointer.png")';
-  });
-});
-document.querySelectorAll(".btn").forEach((btn) => {
-  btn.addEventListener("mouseout", () => {
-    cursor.style.backgroundImage = 'url("./images/default.png")';
-  });
-});
+// // Buttons pointer toggle
+// document.querySelectorAll(".btn").forEach((btn) => {
+//   btn.addEventListener("mouseenter", () => {
+//     cursor.style.backgroundImage = 'url("./images/pointer.png")';
+//   });
+// });
+// document.querySelectorAll(".btn").forEach((btn) => {
+//   btn.addEventListener("mouseout", () => {
+//     cursor.style.backgroundImage = 'url("./images/default.png")';
+//   });
+// });
 
-// Click vanishers revert when clicked
-document.querySelectorAll(".clickVan").forEach((btn) => {
-  btn.addEventListener("mousedown", () => {
-    cursor.style.backgroundImage = 'url("./images/default.png")';
-  });
-});
+// // Click vanishers revert when clicked
+// document.querySelectorAll(".clickVan").forEach((btn) => {
+//   btn.addEventListener("mousedown", () => {
+//     cursor.style.backgroundImage = 'url("./images/default.png")';
+//   });
+// });
 
 // Treat
 
@@ -130,12 +130,12 @@ function createTreat(e) {
     var newTreat = document.getElementById(`treat${nextID}`);
 
     // Assign cursor
-    newTreat.addEventListener("mouseenter", () => {
-      cursor.style.backgroundImage = 'url("./images/grab-open.png")';
-    });
-    newTreat.addEventListener("mouseout", () => {
-      cursor.style.backgroundImage = 'url("./images/default.png")';
-    });
+    // newTreat.addEventListener("mouseenter", () => {
+    //   cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+    // });
+    // newTreat.addEventListener("mouseout", () => {
+    //   cursor.style.backgroundImage = 'url("./images/default.png")';
+    // });
 
     const treatDimensions = treatBag.getBoundingClientRect();
 
@@ -147,16 +147,16 @@ function createTreat(e) {
     for (snack of treat) snack.onmousedown = dragElement;
 
     // Cursor
-    document.querySelectorAll(".movable").forEach((btn) => {
-      btn.addEventListener("mouseenter", () => {
-        cursor.style.backgroundImage = 'url("./images/grab-open.png")';
-      });
-    });
-    document.querySelectorAll(".movable").forEach((btn) => {
-      btn.addEventListener("mouseout", () => {
-        cursor.style.backgroundImage = 'url("./images/default.png")';
-      });
-    });
+    // document.querySelectorAll(".movable").forEach((btn) => {
+    //   btn.addEventListener("mouseenter", () => {
+    //     cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+    //   });
+    // });
+    // document.querySelectorAll(".movable").forEach((btn) => {
+    //   btn.addEventListener("mouseout", () => {
+    //     cursor.style.backgroundImage = 'url("./images/default.png")';
+    //   });
+    // });
   }
 }
 
@@ -169,7 +169,8 @@ function dragElement(e) {
     activeTreat = e.target;
 
     // Set cursor to grabbing while clicked
-    cursor.style.backgroundImage = 'url("./images/grab-closed.png")';
+    // cursor.style.backgroundImage = 'url("./images/grab-closed.png")';
+    activeTreat.style.cursor = "grabbing";
 
     // Handling
     var pos1 = 0,
@@ -203,7 +204,8 @@ function dragElement(e) {
       document.onmousemove = null;
 
       // Set cursor back to to grab when released
-      cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+      // cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+      activeTreat.style.cursor = "grab";
 
       // Count treats in bowl
       manageCount();
@@ -243,10 +245,10 @@ function manageCount() {
     // Make treat unmovable
     playState = false;
     // Change cursor to default for treats and bag
-    for (treat of document.getElementsByClassName("movable")) {
-      treat.style.cursor = "default";
-    }
-    treatBag.style.cursor = "default";
+    // for (treat of document.getElementsByClassName("movable")) {
+    //   treat.style.cursor = "default";
+    // }
+    // treatBag.style.cursor = "default";
 
     // Change speech to heart
     speechBox.innerHTML = "❤";

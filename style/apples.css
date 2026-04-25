@@ -1,10 +1,10 @@
 /* Cursor */
-body,
+/* body,
 body:hover {
   cursor: none;
-}
+} */
 
-.cursor {
+/* .cursor {
   position: absolute;
   top: 0;
   left: 0;
@@ -14,9 +14,9 @@ body:hover {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: left;
-  pointer-events: none; /* Ensure the custom cursor doesn't interfere with content */
+  pointer-events: none;
   z-index: 5;
-}
+} */
 
 /* Grid */
 .gridwrap {
@@ -57,7 +57,7 @@ body:hover {
 
 .movable {
   position: absolute;
-  /* cursor: grab; */
+  cursor: grab;
 }
 
 #signBox {
@@ -81,7 +81,11 @@ img {
   -ms-user-select: none;
 }
 
-.modalBtn,
+/* .modalBtn,
 .modalBtn:hover {
   cursor: none;
+} */
+
+.btn {
+  cursor: pointer;
 }

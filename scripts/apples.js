@@ -16,49 +16,49 @@ signBox.innerHTML = modeText;
 var countTo;
 
 // ----- CUSTOM CURSOR
-const cursor = document.querySelector(".cursor");
+// const cursor = document.querySelector(".cursor");
 
-document.addEventListener("mousemove", function (e) {
-  // Make sure large cursor aligns with real cursor
-  var xAdj = -1,
-    yAdj = 0;
-  if (cursor.style.backgroundImage == 'url("./images/pointer.png")') {
-    xAdj = -15;
-    yAdj = 0;
-  } else if (
-    cursor.style.backgroundImage == 'url("./images/grab-open.png")' ||
-    cursor.style.backgroundImage == 'url("./images/grab-closed.png")'
-  ) {
-    xAdj = -20;
-    yAdj = -20;
-  } else {
-    xAdj = -1;
-    yAdj = 0;
-  }
+// document.addEventListener("mousemove", function (e) {
+//   // Make sure large cursor aligns with real cursor
+//   var xAdj = -1,
+//     yAdj = 0;
+//   if (cursor.style.backgroundImage == 'url("./images/pointer.png")') {
+//     xAdj = -15;
+//     yAdj = 0;
+//   } else if (
+//     cursor.style.backgroundImage == 'url("./images/grab-open.png")' ||
+//     cursor.style.backgroundImage == 'url("./images/grab-closed.png")'
+//   ) {
+//     xAdj = -20;
+//     yAdj = -20;
+//   } else {
+//     xAdj = -1;
+//     yAdj = 0;
+//   }
 
-  // Follow mouse
-  cursor.style.left = e.clientX + xAdj + "px";
-  cursor.style.top = e.clientY + yAdj + "px";
-});
+//   // Follow mouse
+//   cursor.style.left = e.clientX + xAdj + "px";
+//   cursor.style.top = e.clientY + yAdj + "px";
+// });
 
-// Buttons pointer toggle
-document.querySelectorAll(".btn").forEach((btn) => {
-  btn.addEventListener("mouseenter", () => {
-    cursor.style.backgroundImage = 'url("./images/pointer.png")';
-  });
-});
-document.querySelectorAll(".btn").forEach((btn) => {
-  btn.addEventListener("mouseout", () => {
-    cursor.style.backgroundImage = 'url("./images/default.png")';
-  });
-});
+// // Buttons pointer toggle
+// document.querySelectorAll(".btn").forEach((btn) => {
+//   btn.addEventListener("mouseenter", () => {
+//     cursor.style.backgroundImage = 'url("./images/pointer.png")';
+//   });
+// });
+// document.querySelectorAll(".btn").forEach((btn) => {
+//   btn.addEventListener("mouseout", () => {
+//     cursor.style.backgroundImage = 'url("./images/default.png")';
+//   });
+// });
 
-// Click vanishers revert when clicked
-document.querySelectorAll(".clickVan").forEach((btn) => {
-  btn.addEventListener("mousedown", () => {
-    cursor.style.backgroundImage = 'url("./images/default.png")';
-  });
-});
+// // Click vanishers revert when clicked
+// document.querySelectorAll(".clickVan").forEach((btn) => {
+//   btn.addEventListener("mousedown", () => {
+//     cursor.style.backgroundImage = 'url("./images/default.png")';
+//   });
+// });
 
 function chooseMode(mode) {
   // Hide mode label
@@ -131,25 +131,25 @@ for (var i = 0; i < 10; i++) {
   // console.log(`Placed apple ${i + 1} at x${x} y${y}`);
 
   // Assign cursor
-  newApple.addEventListener("mouseenter", () => {
-    cursor.style.backgroundImage = 'url("./images/grab-open.png")';
-  });
-  newApple.addEventListener("mouseout", () => {
-    cursor.style.backgroundImage = 'url("./images/default.png")';
-  });
+  // newApple.addEventListener("mouseenter", () => {
+  //   cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+  // });
+  // newApple.addEventListener("mouseout", () => {
+  //   cursor.style.backgroundImage = 'url("./images/default.png")';
+  // });
 }
 
 // Cursor
-document.querySelectorAll(".movable").forEach((btn) => {
-  btn.addEventListener("mouseenter", () => {
-    cursor.style.backgroundImage = 'url("./images/grab-open.png")';
-  });
-});
-document.querySelectorAll(".movable").forEach((btn) => {
-  btn.addEventListener("mouseout", () => {
-    cursor.style.backgroundImage = 'url("./images/default.png")';
-  });
-});
+// document.querySelectorAll(".movable").forEach((btn) => {
+//   btn.addEventListener("mouseenter", () => {
+//     cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+//   });
+// });
+// document.querySelectorAll(".movable").forEach((btn) => {
+//   btn.addEventListener("mouseout", () => {
+//     cursor.style.backgroundImage = 'url("./images/default.png")';
+//   });
+// });
 
 apple = document.getElementsByClassName("movable");
 for (snack of apple) snack.onmousedown = dragElement;
@@ -162,7 +162,8 @@ function dragElement(e) {
   activeApple = e.target;
 
   // Set cursor to grabbing while clicked
-  cursor.style.backgroundImage = 'url("./images/grab-closed.png")';
+  // cursor.style.backgroundImage = 'url("./images/grab-closed.png")';
+  activeApple.style.cursor = "grabbing";
 
   // Handling
   var pos1 = 0,
@@ -195,7 +196,8 @@ function dragElement(e) {
     document.onmousemove = null;
 
     // Set cursor back to to grab when released
-    cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+    // cursor.style.backgroundImage = 'url("./images/grab-open.png")';
+    activeApple.style.cursor = "grab";
 
     // Count apples in basket
     manageCount();
@@ -239,9 +241,9 @@ function manageCount() {
     // Make apple unmovable
     playState = false;
     // Change cursor to default for apples
-    for (apple of document.getElementsByClassName("movable")) {
-      apple.style.cursor = "default";
-    }
+    // for (apple of document.getElementsByClassName("movable")) {
+    //   apple.style.cursor = "default";
+    // }
 
     // Trigger confetti
     const emojiConfetti = new JSConfetti();
