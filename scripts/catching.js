@@ -13,11 +13,23 @@ document.querySelectorAll(".creature").forEach((creature) => {
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
 introModal.style.display = "block";
-function start(operator) {
-  var op = operator;
-
+function start() {
   // Close modal
   introModal.style.display = "none";
 
-  // Cont
+  // Get values from html
+  let xMin = +document.getElementById("xMin").value;
+  let xMax = +document.getElementById("xMax").value;
+  let yMin = +document.getElementById("yMin").value;
+  let yMax = +document.getElementById("yMax").value;
+  let operator = document.getElementById("operator").value;
+
+  let qa = getQA(6, operator, xMin, xMax, yMin, yMax);
+
+  overallValid = !(qa.length == 0);
+  if (overallValid) {
+    questions = qa[0];
+    answers = qa[1];
+  }
+  console.log(qa);
 }

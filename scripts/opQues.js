@@ -4,7 +4,6 @@ function getQA(amount, operator, xMin, xMax, yMin, yMax) {
   let questions = [],
     answers = [];
 
-  //-------------------------------------------FROM VAULT!!!!
   // ----- DATA VALIDATION
   // Min can not be lower than max (CAN be equal)
   let xValidRange = xMin <= xMax;
@@ -72,7 +71,7 @@ function getQA(amount, operator, xMin, xMax, yMin, yMax) {
   if (overallValid) {
     // Generate numbers for questions
     let nums = [];
-    while (nums.length < 3) {
+    while (nums.length < amount) {
       // INCLUSIVE INTEGER: Math.floor(Math.random() * (max - min + 1)) + min;
       let pair = [];
       // x
@@ -135,7 +134,6 @@ function getQA(amount, operator, xMin, xMax, yMin, yMax) {
       }
     }
   }
-  //-------------------------------------------
 
   return [questions, answers];
 }
