@@ -9,3 +9,15 @@ document.querySelectorAll(".creature").forEach((creature) => {
   creature.style.marginLeft = xDir + xMod + "px";
   creature.style.marginTop = yDir + yMod + "px";
 });
+
+//-----GAME SETUP
+const introModal = document.getElementById("introModal");
+introModal.style.display = "block";
+function start(operator) {
+  var op = operator;
+
+  // Close modal
+  introModal.style.display = "none";
+
+  // Cont
+}

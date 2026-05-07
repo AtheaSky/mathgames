@@ -31,6 +31,16 @@
   margin: auto;
 }
 
+/* Modal settings */
+.modal {
+  font-size: 12pt;
+}
+.modalBtn {
+  width: 100px;
+  margin: auto;
+}
+
+/* Catching */
 #fishTable {
   margin: auto;
   font-size: 20pt;

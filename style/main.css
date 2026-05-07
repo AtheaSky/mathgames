@@ -49,6 +49,10 @@ h3 {
   font-family: sans-serif;
   font-size: 16pt;
 }
+.modal .btn {
+  font-family: sans-serif;
+  font-size: 16pt;
+}
 /* Modal Content/Box */
 .modal-content {
   background-color: #d4d8d1; /* MODAL BG COLOUR */
