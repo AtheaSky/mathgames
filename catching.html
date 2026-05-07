@@ -30,6 +30,7 @@
   </head>
 
   <body>
+    <!-- Intro settings modal -->
     <div class="modal" id="introModal">
       <div class="modal-content">
         <h2>Settings</h2>
@@ -64,36 +65,139 @@
       </div>
     </div>
 
+    <!-- Catch modal -->
+    <div class="modal" id="catchModal">
+      <div class="modal-content">
+        <label
+          for="Question"
+          id="currentQuestion"
+          style="font-size: 16pt"
+        ></label>
+
+        <br /><br />
+        <input type="number" id="userAns" max="1000" placeholder="#" />
+
+        <br /><br /><br />
+
+        <div class="modalBtn btn" onClick="catchResult()">Catch!</div>
+      </div>
+    </div>
+
+    <!-- Main content -->
     <h1>Creature Catching</h1>
 
     <div class="gridwrap">
       <div class="left">
         <table id="fishTable">
           <tr>
-            <td><img src="./images/fish1.png" class="creature" /></td>
-            <td><img src="./images/fish1.png" class="creature" /></td>
-            <td><img src="./images/fish1.png" class="creature" /></td>
+            <td>
+              <img
+                src="./images/fish1.png"
+                class="creature"
+                id="creature1"
+                onClick="catchAttempt('creature1')"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/fish1.png"
+                class="creature"
+                id="creature2"
+                onClick="catchAttempt('creature2')"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/fish1.png"
+                class="creature"
+                id="creature3"
+                onClick="catchAttempt('creature3')"
+              />
+            </td>
           </tr>
           <tr>
-            <td><img src="./images/fish1.png" class="creature" /></td>
-            <td><img src="./images/fish1.png" class="creature" /></td>
-            <td><img src="./images/fish1.png" class="creature" /></td>
+            <td>
+              <img
+                src="./images/fish1.png"
+                class="creature"
+                id="creature4"
+                onClick="catchAttempt('creature4')"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/fish1.png"
+                class="creature"
+                id="creature5"
+                onClick="catchAttempt('creature5')"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/fish1.png"
+                class="creature"
+                id="creature6"
+                onClick="catchAttempt('creature6')"
+              />
+            </td>
           </tr>
         </table>
       </div>
       <div class="right">
         <table id="cardTable">
           <tr>
-            <td><img src="./images/card.png" class="card" /></td>
-            <td><img src="./images/card.png" class="card" /></td>
+            <td>
+              <img
+                src="./images/card.png"
+                class="card"
+                id="card1"
+                style="visibility: hidden"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/card.png"
+                class="card"
+                id="card2"
+                style="visibility: hidden"
+              />
+            </td>
           </tr>
           <tr>
-            <td><img src="./images/card.png" class="card" /></td>
-            <td><img src="./images/card.png" class="card" /></td>
+            <td>
+              <img
+                src="./images/card.png"
+                class="card"
+                id="card3"
+                style="visibility: hidden"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/card.png"
+                class="card"
+                id="card4"
+                style="visibility: hidden"
+              />
+            </td>
           </tr>
           <tr>
-            <td><img src="./images/card.png" class="card" /></td>
-            <td><img src="./images/card.png" class="card" /></td>
+            <td>
+              <img
+                src="./images/card.png"
+                class="card"
+                id="card5"
+                style="visibility: hidden"
+              />
+            </td>
+            <td>
+              <img
+                src="./images/card.png"
+                class="card"
+                id="card6"
+                style="visibility: hidden"
+              />
+            </td>
           </tr>
         </table>
       </div>
