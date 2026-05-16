@@ -1,3 +1,23 @@
+// Amount of image options that exist for each animal (SET MANUALLY)
+const variants = {
+  fish: 5,
+};
+
+// Place animals
+let varPool = [];
+for (let i = 1; i <= 6; i++) {
+  // Evenly randomise creature colours
+  if (varPool.length == 0) {
+    for (var j = 1; j <= variants["fish"]; j++) {
+      varPool.push(j);
+    }
+  }
+  let randVar = varPool[Math.floor(Math.random() * varPool.length)];
+  varPool = varPool.filter((item) => item !== randVar);
+
+  document.getElementById(`creature${i}`).src = `./images/fish${randVar}.png`;
+}
+
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
 introModal.style.display = "block";
