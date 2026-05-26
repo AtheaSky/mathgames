@@ -5,6 +5,7 @@ const variants = {
 
 // Place animals
 let varPool = [];
+// let varOrder = [];
 for (let i = 1; i <= 6; i++) {
   // Evenly randomise creature colours
   if (varPool.length == 0) {
@@ -15,8 +16,12 @@ for (let i = 1; i <= 6; i++) {
   let randVar = varPool[Math.floor(Math.random() * varPool.length)];
   varPool = varPool.filter((item) => item !== randVar);
 
+  // Place and record image in creature and card tables
   document.getElementById(`creature${i}`).src = `./images/fish${randVar}.png`;
+  document.getElementById(`card${i}Caught`).src = `./images/fish${randVar}.png`;
+  // varOrder[i - 1] = randVar;
 }
+// console.log(varOrder);
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -86,8 +91,10 @@ function catchResult() {
     // Show card
     document.getElementById(`card${currentQuestion + 1}`).style.visibility =
       "visible";
-    // Add image to card
-    //
+    // Show caught creature on card
+    document.getElementById(
+      `card${currentQuestion + 1}Caught`,
+    ).style.visibility = "visible";
 
     // If no fish left, end
     //

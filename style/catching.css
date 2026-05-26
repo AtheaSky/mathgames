@@ -65,6 +65,7 @@
   margin-left: 40px;
 }
 #cardTable td {
+  position: relative;
   width: 100px;
   height: 100px;
 
@@ -72,4 +73,10 @@
 }
 #cardTable td img {
   width: 93px;
+}
+.caughtImg {
+  position: absolute;
+  width: 80px !important;
+  top: 44px;
+  left: 16px;
 }
