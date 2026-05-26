@@ -1,6 +1,6 @@
 // Amount of image options that exist for each animal (SET MANUALLY)
 const variants = {
-  fish: 5,
+  fish: 6,
 };
 
 // Place animals
