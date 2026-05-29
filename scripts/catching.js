@@ -135,5 +135,32 @@ function catchResult() {
     document.getElementById("endModalContent").innerHTML += endContent;
 
     document.getElementById("endModal").style.display = "block";
+
+    // Trigger confetti based on caught fish
+    const emojiConfetti = new JSConfetti();
+
+    emojiConfetti.addConfetti({
+      emojis: ["🐟", "🐠"],
+      emojiSize: 40,
+      confettiNumber: Math.round(20 * (creaturesCaught / iniCreatureAmt)),
+    });
+
+    // If all caught, add some regular confetti
+    if (creaturesCaught == iniCreatureAmt) {
+      const jsConfetti = new JSConfetti();
+
+      // Trigger colorful confetti
+      jsConfetti.addConfetti({
+        confettiColors: [
+          "#ed795f",
+          "#fca4b6",
+          "#35b297",
+          "#6dd2e7",
+          "#fc69c5",
+          "#f14f55",
+        ],
+        confettiNumber: 200,
+      });
+    }
   }
 }
