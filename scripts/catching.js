@@ -7,7 +7,7 @@ const iniCreatureAmt = 6;
 // Place animals
 let varPool = [];
 // let varOrder = [];
-for (let i = 1; i <= 6; i++) {
+for (let i = 1; i <= iniCreatureAmt; i++) {
   // Evenly randomise creature colours
   if (varPool.length == 0) {
     for (var j = 1; j <= variants["fish"]; j++) {
@@ -72,6 +72,7 @@ var creaturesLeft = iniCreatureAmt;
 var creaturesCaught = 0;
 let currentQuestion;
 var timeUp = false;
+var endState = false;
 
 // If enabled, start timer
 function timer(startingMins, startingSecs) {
@@ -80,6 +81,10 @@ function timer(startingMins, startingSecs) {
   var sec = startingSecs;
 
   var timer = setInterval(function () {
+    if (endState) {
+      clearInterval(timer);
+    }
+
     // If seconds under 10, add leading 0
     var secStr = sec;
     if (sec < 10) {
@@ -162,7 +167,12 @@ function endGame() {
   var endBody;
 
   // Freeze timer
-  clearInterval(timer);
+  endState = true;
+
+  // Hide all fish
+  for (let i = 1; i <= iniCreatureAmt; i++) {
+    document.getElementById(`creature${i}`).style = "visibility: hidden";
+  }
 
   // Congratulate based on fish caught
   if (creaturesCaught == iniCreatureAmt) {
