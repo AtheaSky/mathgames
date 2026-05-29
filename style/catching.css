@@ -44,6 +44,13 @@
   padding: 2px;
 }
 
+/* Timer */
+#timer {
+  position: absolute;
+  top: 160px;
+  left: 483px;
+}
+
 /* Catching */
 #fishTable {
   margin: auto;
