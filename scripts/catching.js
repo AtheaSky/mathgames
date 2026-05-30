@@ -104,13 +104,13 @@ function timer(startingMins, startingSecs) {
 
         // If 1 minute left, turn yellow
         if (min == 0) {
-          document.getElementById("timer").style = "color: #413212";
+          document.getElementById("timer").style = "color: #a14c17";
         }
       } else {
         // Else, end
         clearInterval(timer);
         timeUp = true;
-        document.getElementById("timer").style = "color: #6e1b1b";
+        document.getElementById("timer").style = "color: #751b1b";
         endGame();
       }
     }
@@ -213,8 +213,8 @@ function endGame() {
     confettiNumber: Math.round(20 * (creaturesCaught / iniCreatureAmt)),
   });
 
-  // If all caught, add some regular confetti
-  if (creaturesCaught == iniCreatureAmt) {
+  // Add regular confetti if caught at least one fish
+  if (creaturesCaught > 0) {
     const jsConfetti = new JSConfetti();
 
     // Trigger colorful confetti
