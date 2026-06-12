@@ -6,7 +6,6 @@ const iniCreatureAmt = 6;
 
 // Place animals
 let varPool = [];
-// let varOrder = [];
 for (let i = 1; i <= iniCreatureAmt; i++) {
   // Evenly randomise creature colours
   if (varPool.length == 0) {
@@ -20,9 +19,7 @@ for (let i = 1; i <= iniCreatureAmt; i++) {
   // Place and record image in creature and card tables
   document.getElementById(`creature${i}`).src = `./images/fish${randVar}.png`;
   document.getElementById(`card${i}Caught`).src = `./images/fish${randVar}.png`;
-  // varOrder[i - 1] = randVar;
 }
-// console.log(varOrder);
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -40,10 +37,15 @@ function start() {
 
   let qa = getQA(6, operator, xMin, xMax, yMin, yMax);
 
-  overallValid = !(qa.length == 0);
+  overallValid = !(qa[0].length == 0);
   if (overallValid) {
     questions = qa[0];
     answers = qa[1];
+  } else {
+    console.log("Invalid");
+    document.getElementById("pageTitle").innerHTML =
+      "INVALID INPUT; refresh & try again";
+    document.getElementById("pageTitle").style.color = "#8d1818";
   }
   console.log(qa);
 
