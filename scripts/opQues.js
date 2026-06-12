@@ -1,3 +1,6 @@
+const factors = (number) =>
+  Array.from(Array(number + 1), (_, i) => i).filter((i) => number % i === 0);
+
 function getQA(amount, operator, xMin, xMax, yMin, yMax) {
   console.log();
   let overallValid = false;

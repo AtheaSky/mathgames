@@ -2,9 +2,6 @@ let answers = [];
 let questions = [];
 let overallValid = false;
 
-const factors = (number) =>
-  Array.from(Array(number + 1), (_, i) => i).filter((i) => number % i === 0);
-
 // ON REFESH, SETTINGS TO RESET/BLANK
 window.onload = function () {
   // Set question type to none
