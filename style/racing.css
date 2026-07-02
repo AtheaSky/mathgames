@@ -1,0 +1,62 @@
+/* Grid */
+.content {
+  height: 600px;
+  width: 70%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+/* Modal settings */
+.modal {
+  font-size: 12pt;
+}
+.modalBtn {
+  width: 100px;
+  margin: auto;
+}
+.modal input {
+  width: 40px;
+  padding: 2px;
+}
+
+/* Track */
+#racetrack {
+  margin: auto;
+  font-size: 16pt;
+  font-family: sans-serif;
+  font-weight: bold;
+  border-spacing: 0;
+  table-layout: fixed;
+
+  background-color: white;
+  border: 7px dashed red;
+  border-left: hidden;
+  border-right: hidden;
+}
+#racetrack tr {
+  background-color: #23272a;
+  color: white;
+}
+#racetrack td:hover {
+  background-color: #282c30;
+}
+#car1track td {
+  border-bottom: 3px dashed white;
+}
+#car2track td {
+  border-top: 3px dashed white;
+}
+#racetrack td {
+  width: 200px;
+  height: 80px;
+}
+
+/* Cars & finish */
+.car {
+  position: absolute;
+  width: 130px;
+}
+#finish {
+  position: absolute;
+  width: 210px;
+}

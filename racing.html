@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/racing.css" />
+
+    <script defer src="./scripts/modal.js"></script>
+    <script defer src="./scripts/opQues.js"></script>
+    <script defer src="./scripts/racing.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+    <!-- Title font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Text on tab name -->
+    <title>Math Race</title>
+
+    <!-- Site icon on tab. Do one of the following:
+        * Replace "favicon.png" in images folder with your icon of same name
+        * Rename href below to "./images/(YOUR-IMAGE.EXTENSION)"
+        * Rename href below to "(IMAGE-WEB-URL.EXTENSION)" -->
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+  </head>
+
+  <body>
+    <!-- Intro settings modal -->
+    <div class="modal" id="introModal">
+      <div class="modal-content">
+        <h2>Settings</h2>
+
+        <br />
+
+        X
+        <select name="operator" id="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="×">×</option>
+          <option value="÷">÷</option>
+        </select>
+        Y
+
+        <br /><br />
+
+        <div>
+          <label>X Range:</label>
+          <input type="number" id="xMin" min="1" max="1000" value="1" /> to
+          <input type="number" id="xMax" min="1" max="1000" value="10" />
+        </div>
+        <div>
+          <label>Y Range:</label>
+          <input type="number" id="yMin" min="1" max="1000" value="1" /> to
+          <input type="number" id="yMax" min="1" max="1000" value="10" />
+        </div>
+
+        <br />
+
+        <div class="modalBtn btn" onClick="start('+')">Start</div>
+      </div>
+    </div>
+
+    <!-- Drive modal -->
+    <div class="modal" id="driveModal">
+      <div class="modal-content">
+        <label
+          for="Question"
+          id="currentQuestion"
+          style="font-size: 16pt"
+        ></label>
+
+        <br /><br />
+        <input type="number" id="userAns" max="1000" placeholder="#" />
+
+        <br /><br /><br />
+
+        <div class="modalBtn btn" onClick="driveResult()">Drive</div>
+      </div>
+    </div>
+
+    <!-- End modal -->
+    <div class="modal" id="endModal">
+      <div class="modal-content" id="endModalContent"></div>
+    </div>
+
+    <!-- Main content -->
+    <h1 id="pageTitle">Math Race</h1>
+
+    <!-- Cars -->
+    <img id="car1" class="car" src="images/car.png"></img>
+    <img id="car2" class="car" src="images/car.png"></img>
+
+    <div class="content">
+        <!-- Racetrack table -->
+        <table id="racetrack">
+          <tr id="car1track">
+            <td id="p1q1"></td>
+            <td id="p1q2"></td>
+            <td id="p1q3"></td>
+            <td id="p1q4"></td>
+            <td id="p1q5"></td>
+            <td id="p1q6"></td>
+            <td id="p1q7"></td>
+            <td id="p1q8"></td>
+          </tr>
+          <tr id="car2track">
+            <td id="p2q1"></td>
+            <td id="p2q2"></td>
+            <td id="p2q3"></td>
+            <td id="p2q4"></td>
+            <td id="p2q5"></td>
+            <td id="p2q6"></td>
+            <td id="p2q7"></td>
+            <td id="p2q8"></td>
+          </tr>
+        </table>
+        
+        <img id="finish" src="images/race_finish.png">
+      </div>
+
+    <!-- Instructions -->
+    <hr />
+    <p>[Instructions]</p>
+  </body>
+</html>
