@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="./style/main.css" />
     <link rel="stylesheet" href="./style/racing.css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/spin-wheel@5.0.2/dist/spin-wheel-iife.js"></script>
+
     <script defer src="./scripts/modal.js"></script>
     <script defer src="./scripts/opQues.js"></script>
     <script defer src="./scripts/racing.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
     <!-- Title font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,8 +67,11 @@
       </div>
     </div>
 
-    <!-- Drive modal -->
-    <div class="modal" id="driveModal">
+    <!-- Wheel modal -->
+    <div id="wheel"></div>
+
+    <!-- Question modal -->
+    <div class="modal" id="quesModal">
       <div class="modal-content">
         <label
           for="Question"
@@ -79,7 +84,7 @@
 
         <br /><br /><br />
 
-        <div class="modalBtn btn" onClick="driveResult()">Drive</div>
+        <div class="modalBtn btn" onClick="quesResult()">Drive</div>
       </div>
     </div>
 
@@ -92,36 +97,39 @@
     <h1 id="pageTitle">Math Race</h1>
 
     <!-- Cars -->
-    <img id="car1" class="car" src="images/car.png"></img>
-    <img id="car2" class="car" src="images/car.png"></img>
+    <img id="car1" class="car" src="images/car.png" />
+    <img id="car2" class="car" src="images/car.png" />
 
     <div class="content">
-        <!-- Racetrack table -->
-        <table id="racetrack">
-          <tr id="car1track">
-            <td id="p1q1"></td>
-            <td id="p1q2"></td>
-            <td id="p1q3"></td>
-            <td id="p1q4"></td>
-            <td id="p1q5"></td>
-            <td id="p1q6"></td>
-            <td id="p1q7"></td>
-            <td id="p1q8"></td>
-          </tr>
-          <tr id="car2track">
-            <td id="p2q1"></td>
-            <td id="p2q2"></td>
-            <td id="p2q3"></td>
-            <td id="p2q4"></td>
-            <td id="p2q5"></td>
-            <td id="p2q6"></td>
-            <td id="p2q7"></td>
-            <td id="p2q8"></td>
-          </tr>
-        </table>
-        
-        <img id="finish" src="images/race_finish.png">
-      </div>
+      <!-- Racetrack table -->
+      <table id="racetrack">
+        <tr id="car1track">
+          <td id="p1q1"></td>
+          <td id="p1q2"></td>
+          <td id="p1q3"></td>
+          <td id="p1q4"></td>
+          <td id="p1q5"></td>
+          <td id="p1q6"></td>
+          <td id="p1q7"></td>
+          <td id="p1q8"></td>
+        </tr>
+        <tr id="car2track">
+          <td id="p2q1"></td>
+          <td id="p2q2"></td>
+          <td id="p2q3"></td>
+          <td id="p2q4"></td>
+          <td id="p2q5"></td>
+          <td id="p2q6"></td>
+          <td id="p2q7"></td>
+          <td id="p2q8"></td>
+        </tr>
+      </table>
+
+      <img id="finish" src="images/race_finish.png" />
+    </div>
+
+    <!-- Play button -->
+    <div id="playBtn" onClick="spinWheel()">Play (P1)</div>
 
     <!-- Instructions -->
     <hr />

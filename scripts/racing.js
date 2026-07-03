@@ -1,4 +1,21 @@
 const spacesPerPlayer = 8;
+var pTurn = 1;
+
+// Wheel setup
+const wheelContents = {
+  items: [
+    {
+      label: "one",
+    },
+    {
+      label: "two",
+    },
+    {
+      label: "three",
+    },
+  ],
+};
+const wheelDiv = document.getElementById("wheel");
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -60,17 +77,13 @@ for (var i = 1; i < 3; i++) {
 }
 
 /////////////////////////////////////////////PROGRESS HERE
-// When roaming creature clicked
-function catchAttempt(creatureId) {
-  // Set target
-  currentQuestion = Number(creatureId.replace("creature", "")) - 1;
-  // Insert question
-  document.getElementById("currentQuestion").innerText =
-    questions[currentQuestion];
-  // Show modal
-  document.getElementById("catchModal").style.display = "block";
-  // Hide creature
-  document.getElementById(creatureId).style.visibility = "hidden";
+// When play button clicked
+function spinWheel() {
+  const wheel = new Wheel(wheelDiv, wheelContents);
+  wheelDiv.innerHTML = wheel;
+
+  // Show wheel
+  document.getElementById("wheel").style.visibility = "visible";
 }
 
 // Handle received answer
