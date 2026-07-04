@@ -17,6 +17,7 @@ const wheelContents = {
 };
 const wheelDiv = document.getElementById("wheelModalContent");
 const wheel = new spinWheel.Wheel(wheelDiv, wheelContents);
+console.log("Created wheel");
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -79,6 +80,7 @@ for (var i = 1; i < 3; i++) {
 
 // When play button clicked
 function turn() {
+  console.log("Turn");
   // Show wheel
   document.getElementById("wheelModal").style.display = "block";
 }
