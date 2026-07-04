@@ -65,8 +65,10 @@ var endState = false;
 const finish = document.getElementById("finish");
 const trackEnd = document.getElementById("p1q8");
 const trackEndLoc = trackEnd.getBoundingClientRect();
-finish.style.left = trackEndLoc.left + 140 + "px";
-finish.style.top = trackEndLoc.top + 10 + "px";
+const flagLoc = finish.getBoundingClientRect();
+finish.style.left = trackEndLoc.left + 135 + "px";
+finish.style.top =
+  trackEndLoc.top + (flagLoc.bottom - flagLoc.top) / 2 - 20 + "px";
 
 // Place cars
 for (var i = 1; i < 3; i++) {
