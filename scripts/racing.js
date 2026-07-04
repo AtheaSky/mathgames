@@ -15,7 +15,8 @@ const wheelContents = {
     },
   ],
 };
-const wheelDiv = document.getElementById("wheel");
+const wheelDiv = document.getElementById("wheelModalContent");
+const wheel = new spinWheel.Wheel(wheelDiv, wheelContents);
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -73,19 +74,16 @@ for (var i = 1; i < 3; i++) {
   const q1Loc = q1.getBoundingClientRect();
 
   car.style.left = q1Loc.left - 160 + "px";
-  car.style.top = q1Loc.top - 20 + "px";
+  car.style.top = q1Loc.top + 15 + "px";
 }
 
-/////////////////////////////////////////////PROGRESS HERE
 // When play button clicked
-function spinWheel() {
-  const wheel = new Wheel(wheelDiv, wheelContents);
-  wheelDiv.innerHTML = wheel;
-
+function turn() {
   // Show wheel
-  document.getElementById("wheel").style.visibility = "visible";
+  document.getElementById("wheelModal").style.display = "block";
 }
 
+/////// GRANDFATHERED; WIP
 // Handle received answer
 function catchResult() {
   creaturesLeft -= 1;
