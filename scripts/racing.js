@@ -3,6 +3,10 @@ var pTurn = 1;
 
 // Wheel setup
 const wheelContents = {
+  radius: 0.9,
+  offset: { x: -0.05, y: -0.05 },
+  pointerAngle: 90,
+  itemBackgroundColors: ["#ddafaf", "#8faadd", "#c7eead"],
   items: [
     {
       label: "one",
@@ -17,7 +21,12 @@ const wheelContents = {
 };
 const wheelDiv = document.getElementById("wheelModalContent");
 const wheel = new spinWheel.Wheel(wheelDiv, wheelContents);
-console.log("Created wheel");
+
+// wheel.overlayImage("../images/apple.png");
+
+wheel.onRest = (event) => {
+  console.log(wheelContents.items[wheel.getCurrentIndex()].label);
+};
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -82,7 +91,6 @@ for (var i = 1; i < 3; i++) {
 
 // When play button clicked
 function turn() {
-  console.log("Turn");
   // Show wheel
   document.getElementById("wheelModal").style.display = "block";
 }

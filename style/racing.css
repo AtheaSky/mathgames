@@ -40,6 +40,15 @@
   padding: 2px;
 }
 
+.modal {
+  overflow: hidden;
+}
+#wheelModalContent {
+  overflow: hidden;
+  width: 400px;
+  height: 400px;
+}
+
 /* Track */
 #racetrack {
   margin: auto;
