@@ -30,6 +30,7 @@
 /* Modal settings */
 .modal {
   font-size: 12pt;
+  overflow: hidden;
 }
 .modalBtn {
   width: 100px;
@@ -39,10 +40,10 @@
   width: 40px;
   padding: 2px;
 }
-
-.modal {
-  overflow: hidden;
+.playerModal {
+  border-color: #74aad3;
 }
+
 #wheelModalContent {
   overflow: hidden;
   width: 400px;

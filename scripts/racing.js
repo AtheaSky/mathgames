@@ -175,6 +175,9 @@ function quesResult() {
     // Update play button colour
     var btnCol;
     playBtn.style.backgroundColor = playerCol[pTurn];
+    // Update modal border colour
+    const playerModals = document.querySelector(".playerModal");
+    playerModals.style.borderColor = playerCol[pTurn];
   }
 }
 
