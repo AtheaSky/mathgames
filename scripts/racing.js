@@ -2,10 +2,13 @@ const spacesPerPlayer = 8;
 var pTurn = 1;
 
 // Wheel setup
+const overlay = new Image();
+overlay.src = "./images/wheel-overlay.png";
+
 const wheelContents = {
   radius: 0.9,
   offset: { x: -0.05, y: -0.05 },
-  pointerAngle: 90,
+  overlayImage: overlay,
   itemBackgroundColors: ["#ddafaf", "#8faadd", "#c7eead"],
   items: [
     {
@@ -21,8 +24,6 @@ const wheelContents = {
 };
 const wheelDiv = document.getElementById("wheelModalContent");
 const wheel = new spinWheel.Wheel(wheelDiv, wheelContents);
-
-// wheel.overlayImage("../images/apple.png");
 
 wheel.onRest = (event) => {
   console.log(wheelContents.items[wheel.getCurrentIndex()].label);
