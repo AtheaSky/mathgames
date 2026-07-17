@@ -1,5 +1,14 @@
 const spacesPerPlayer = 8;
-var pTurn = 1;
+const playerCol = ["#74aad3", "#d37474"];
+
+var questionWidth;
+var carBaseX;
+
+var pTurn = 0;
+var placements = [-1, -1];
+
+var currentAns;
+var currentWheelResult;
 
 // Wheel setup
 const overlay = new Image();
@@ -25,10 +34,6 @@ const wheelContents = {
 const wheelDiv = document.getElementById("wheelModalContent");
 const wheel = new spinWheel.Wheel(wheelDiv, wheelContents);
 
-wheel.onRest = (event) => {
-  console.log(wheelContents.items[wheel.getCurrentIndex()].label);
-};
-
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
 introModal.style.display = "block";
@@ -48,8 +53,8 @@ function start() {
 
   overallValid = !(p1qa[0].length == 0 || p2qa[0].length == 0);
   if (overallValid) {
-    Questions = [p1qa[0], p2qa[0]];
-    Answers = [p1qa[1], p2qa[1]];
+    questions = [p1qa[0], p2qa[0]];
+    answers = [p1qa[1], p2qa[1]];
   } else {
     console.log("Invalid");
     document.getElementById("pageTitle").innerHTML =
@@ -62,12 +67,11 @@ function start() {
   // Place questions on track
   for (var i = 0; i < 2; i++) {
     for (var j = 0; j < 8; j++) {
-      document.getElementById(`p${i + 1}q${j + 1}`).innerHTML = Questions[i][j];
+      document.getElementById(`p${i + 1}q${j + 1}`).innerHTML = questions[i][j];
     }
   }
 }
 
-// ------ GAME PLAY
 let currentQuestion;
 var endState = false;
 
@@ -85,81 +89,100 @@ for (var i = 1; i < 3; i++) {
   const car = document.getElementById(`car${i}`);
   const q1 = document.getElementById(`p${i}q1`);
   const q1Loc = q1.getBoundingClientRect();
+  questionWidth = q1Loc.right - q1Loc.left;
 
-  car.style.left = q1Loc.left - 160 + "px";
-  car.style.top = q1Loc.top + 15 + "px";
+  carBaseX = q1Loc.left - 160;
+  car.style.left = carBaseX + "px";
+  car.style.top = q1Loc.top + 16 + "px";
 }
 
+// ------ GAME PLAY
 // When play button clicked
 function turn() {
   // Show wheel
   document.getElementById("wheelModal").style.display = "block";
 }
 
-/////// GRANDFATHERED; WIP
+// Show dialog with question
+function showQuestion() {
+  // Set question
+  var destination = placements[pTurn] + currentWheelResult;
+  if (destination >= spacesPerPlayer) {
+    destination = spacesPerPlayer - 1;
+  }
+  var question = questions[pTurn][destination];
+  currentAns = answers[pTurn][destination];
+  document.getElementById("currentQuestion").innerHTML = question;
+
+  // Show modal
+  document.getElementById("quesModal").style.display = "block";
+}
+
+// When wheel stops spinning
+wheel.onRest = (event) => {
+  // Log result
+  console.log(wheelContents.items[wheel.getCurrentIndex()].label);
+  currentWheelResult = wheel.getCurrentIndex() + 1;
+
+  // Wait before advancing
+  setTimeout(function () {
+    // Hide wheel
+    document.getElementById("wheelModal").style.display = "none";
+    // Show question
+    showQuestion();
+  }, 1500);
+};
+
 // Handle received answer
-function catchResult() {
-  creaturesLeft -= 1;
+function quesResult() {
   // Hide modal
-  document.getElementById("catchModal").style.display = "none";
+  document.getElementById("quesModal").style.display = "none";
   // Take answer given
   let givenAns = Number(document.getElementById("userAns").value);
   // Clear answer field
   document.getElementById("userAns").value = "";
 
-  // If caught, add to side panel
-  if (givenAns == answers[currentQuestion]) {
-    console.log(`Q${currentQuestion + 1} Correct`);
-    creaturesCaught += 1;
+  // If correct, set and drive to new position
+  if (givenAns == currentAns) {
+    console.log("Correct");
+    // Update placement
+    placements[pTurn] += currentWheelResult;
+    if (placements[pTurn] >= spacesPerPlayer) {
+      placements[pTurn] = spacesPerPlayer - 1;
+    }
 
-    // Show card
-    document.getElementById(`card${currentQuestion + 1}`).style.visibility =
-      "visible";
-    // Show caught creature on card
-    document.getElementById(
-      `card${currentQuestion + 1}Caught`,
-    ).style.visibility = "visible";
+    // Move car
+    var car = document.getElementById(`car${pTurn + 1}`);
+    car.style.left =
+      carBaseX + (placements[pTurn] + 1) * questionWidth + 20 + "px";
   } else {
-    console.log(`Q${currentQuestion + 1} Incorrect`);
+    console.log("Incorrect");
   }
 
-  // If no fish left, end
-  if (creaturesLeft == 0) {
+  // If goal reached, end
+  if (placements[pTurn] == spacesPerPlayer - 1) {
     endGame();
+  } else {
+    // If goal not reached, swap to other player's turn
+    pTurn++;
+    if (pTurn > 1) {
+      pTurn = 0;
+    }
+
+    var playBtn = document.getElementById("playBtn");
+    // Update play button text
+    playBtn.innerText = `Play (P${pTurn + 1})`;
+    // Update play button colour
+    var btnCol;
+    playBtn.style.backgroundColor = playerCol[pTurn];
   }
 }
 
+// Win
 function endGame() {
-  var endTitle;
-  var endBody;
-
-  // Freeze timer
-  endState = true;
-
-  // Hide all fish
-  for (let i = 1; i <= iniCreatureAmt; i++) {
-    document.getElementById(`creature${i}`).style = "visibility: hidden";
-  }
-
-  // Congratulate based on fish caught
-  if (creaturesCaught == iniCreatureAmt) {
-    endTitle = "Congratulations!";
-    endBody = "You caught all of the fish!";
-  } else if (creaturesCaught > 0) {
-    endTitle = "Good job!";
-    endBody = `You caught ${creaturesCaught} out of ${iniCreatureAmt} fish!`;
-  } else if (creaturesCaught == 0) {
-    endTitle = "No more fish!";
-    endBody = "All of the fish swam away. Try again!";
-  }
-  // If time ran out, change title to "Time up!" instead
-  if (timeUp) {
-    endTitle = "Time up!";
-  }
-
   // Insert text to end modal
-  const endContent = `<h2>${endTitle}</h2><br /> \
-        <p>${endBody}</p><br /> \
+  const endContent = `<h2>Winner!</h2><br /> \
+        <p>Player ${pTurn + 1} wins!</p><br /> \
         <a href="./index.html" class="modalBtn btn" id="homeBtn">Home</a> \
         <span \
         onClick="window.location.reload();" \
@@ -171,30 +194,11 @@ function endGame() {
 
   document.getElementById("endModal").style.display = "block";
 
-  // Trigger confetti based on caught fish
-  const emojiConfetti = new JSConfetti();
+  // Trigger confetti
+  const jsConfetti = new JSConfetti();
 
-  emojiConfetti.addConfetti({
-    emojis: ["🐟", "🐠"],
-    emojiSize: 40,
-    confettiNumber: Math.round(20 * (creaturesCaught / iniCreatureAmt)),
+  jsConfetti.addConfetti({
+    confettiColors: [playerCol[pTurn]],
+    confettiNumber: 200,
   });
-
-  // Add regular confetti if caught at least one fish
-  if (creaturesCaught > 0) {
-    const jsConfetti = new JSConfetti();
-
-    // Trigger colorful confetti
-    jsConfetti.addConfetti({
-      confettiColors: [
-        "#ed795f",
-        "#fca4b6",
-        "#35b297",
-        "#6dd2e7",
-        "#fc69c5",
-        "#f14f55",
-      ],
-      confettiNumber: 200,
-    });
-  }
 }
