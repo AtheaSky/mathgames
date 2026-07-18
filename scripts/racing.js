@@ -1,5 +1,6 @@
 const spacesPerPlayer = 8;
 const playerCol = ["#74aad3", "#d37474"];
+const playerColSecondary = ["#d1dee7", "#e0cfcf"];
 
 var questionWidth;
 var carBaseX;
@@ -33,6 +34,7 @@ const wheelContents = {
 };
 const wheelDiv = document.getElementById("wheelModalContent");
 const wheel = new spinWheel.Wheel(wheelDiv, wheelContents);
+const quesDiv = document.getElementById("quesModalContent");
 
 //-----GAME SETUP
 const introModal = document.getElementById("introModal");
@@ -169,6 +171,7 @@ function quesResult() {
       pTurn = 0;
     }
 
+    // Update colours for next turn
     var playBtn = document.getElementById("playBtn");
     // Update play button text
     playBtn.innerText = `Play (P${pTurn + 1})`;
@@ -176,8 +179,13 @@ function quesResult() {
     var btnCol;
     playBtn.style.backgroundColor = playerCol[pTurn];
     // Update modal border colour
-    const playerModals = document.querySelector(".playerModal");
-    playerModals.style.borderColor = playerCol[pTurn];
+    wheelDiv.style.borderColor = playerCol[pTurn];
+    quesDiv.style.borderColor = playerCol[pTurn];
+    // Update modal background colour
+    wheelDiv.style.backgroundColor = playerColSecondary[pTurn];
+    quesDiv.style.backgroundColor = playerColSecondary[pTurn];
+    // Update go button colour
+    document.getElementById("goBtn").style.backgroundColor = playerCol[pTurn];
   }
 }
 
