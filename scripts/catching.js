@@ -1,24 +1,51 @@
+// Manage theme
+const queryString = window.location.search;
+const params = new URLSearchParams(queryString);
+const theme = params.get("theme");
+
+let animal,
+  caughtContainer = "";
+
+let gameboard = document.getElementById("gameboard");
+if (theme == "fish") {
+  console.log("Setting theme to fish");
+  animal = "fish";
+  caughtContainer = "card";
+
+  gameboard.style.backgroundImage = "url('./images/fish_background.gif')";
+}
+if (theme == "beach") {
+  animal = "beachcritter";
+  caughtContainer = "photo";
+
+  gameboard.style.backgroundImage = "url('./images/beach.png')";
+}
+
 // Amount of image options that exist for each animal (SET MANUALLY)
 const variants = {
   fish: 6,
+  beachcritter: 6,
 };
 const iniCreatureAmt = 6;
 
 // Place animals
 let varPool = [];
 for (let i = 1; i <= iniCreatureAmt; i++) {
-  // Evenly randomise creature colours
+  // Evenly randomise creature variants
   if (varPool.length == 0) {
-    for (var j = 1; j <= variants["fish"]; j++) {
+    for (var j = 1; j <= variants[animal]; j++) {
       varPool.push(j);
     }
   }
   let randVar = varPool[Math.floor(Math.random() * varPool.length)];
   varPool = varPool.filter((item) => item !== randVar);
 
-  // Place and record image in creature and card tables
-  document.getElementById(`creature${i}`).src = `./images/fish${randVar}.png`;
-  document.getElementById(`card${i}Caught`).src = `./images/fish${randVar}.png`;
+  // Place and record images in creature and card tables
+  document.getElementById(`creature${i}`).src =
+    `./images/${animal}${randVar}.png`;
+  document.getElementById(`card${i}Caught`).src =
+    `./images/${animal}${randVar}.png`;
+  document.getElementById(`card${i}`).src = `./images/${caughtContainer}.png`;
 }
 
 //-----GAME SETUP
@@ -158,7 +185,7 @@ function catchResult() {
     console.log(`Q${currentQuestion + 1} Incorrect`);
   }
 
-  // If no fish left, end
+  // If no animals left, end
   if (creaturesLeft == 0) {
     endGame();
   }
@@ -171,21 +198,21 @@ function endGame() {
   // Freeze timer
   endState = true;
 
-  // Hide all fish
+  // Hide all animals
   for (let i = 1; i <= iniCreatureAmt; i++) {
     document.getElementById(`creature${i}`).style = "visibility: hidden";
   }
 
-  // Congratulate based on fish caught
+  // Congratulate based on animals caught
   if (creaturesCaught == iniCreatureAmt) {
     endTitle = "Congratulations!";
-    endBody = "You caught all of the fish!";
+    endBody = "You caught all of the creatures!";
   } else if (creaturesCaught > 0) {
     endTitle = "Good job!";
-    endBody = `You caught ${creaturesCaught} out of ${iniCreatureAmt} fish!`;
+    endBody = `You caught ${creaturesCaught} out of ${iniCreatureAmt} creatures!`;
   } else if (creaturesCaught == 0) {
-    endTitle = "No more fish!";
-    endBody = "All of the fish swam away. Try again!";
+    endTitle = "No more animals!";
+    endBody = "All of the animals escaped. Try again!";
   }
   // If time ran out, change title to "Time up!" instead
   if (timeUp) {
@@ -206,7 +233,7 @@ function endGame() {
 
   document.getElementById("endModal").style.display = "block";
 
-  // Trigger confetti based on caught fish
+  // Trigger confetti based on caught animals
   const emojiConfetti = new JSConfetti();
 
   emojiConfetti.addConfetti({
@@ -215,7 +242,7 @@ function endGame() {
     confettiNumber: Math.round(20 * (creaturesCaught / iniCreatureAmt)),
   });
 
-  // Add regular confetti if caught at least one fish
+  // Add regular confetti if caught at least one animals
   if (creaturesCaught > 0) {
     const jsConfetti = new JSConfetti();
 
