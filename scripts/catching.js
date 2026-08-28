@@ -19,6 +19,7 @@ if (theme == "beach") {
   caughtContainer = "photo";
 
   gameboard.style.backgroundImage = "url('./images/beach.png')";
+  document.getElementById("pageTitle").innerText = "Beach Catch";
 }
 
 // Amount of image options that exist for each animal (SET MANUALLY)
