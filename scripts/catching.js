@@ -5,18 +5,21 @@ const theme = params.get("theme");
 
 let animal,
   caughtContainer = "";
+let winEmojis = [];
 
 let gameboard = document.getElementById("gameboard");
 if (theme == "fish") {
   console.log("Setting theme to fish");
   animal = "fish";
   caughtContainer = "card";
+  winEmojis = ["🐟", "🐠"];
 
   gameboard.style.backgroundImage = "url('./images/fish_background.gif')";
 }
 if (theme == "beach") {
   animal = "beachcritter";
   caughtContainer = "photo";
+  winEmojis = ["🐚", "⭐", "🐢"];
 
   gameboard.style.backgroundImage = "url('./images/beach.png')";
   document.getElementById("pageTitle").innerText = "Beach Catch";
@@ -24,7 +27,7 @@ if (theme == "beach") {
 
 // Amount of image options that exist for each animal (SET MANUALLY)
 const variants = {
-  fish: 6,
+  fish: 10,
   beachcritter: 6,
 };
 const iniCreatureAmt = 6;
@@ -238,7 +241,7 @@ function endGame() {
   const emojiConfetti = new JSConfetti();
 
   emojiConfetti.addConfetti({
-    emojis: ["🐟", "🐠"],
+    emojis: winEmojis,
     emojiSize: 40,
     confettiNumber: Math.round(20 * (creaturesCaught / iniCreatureAmt)),
   });
