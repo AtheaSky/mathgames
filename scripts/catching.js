@@ -18,7 +18,7 @@ if (theme == "fish") {
 }
 if (theme == "beach") {
   animal = "critters";
-  caughtContainer = "photo";
+  caughtContainer = "beachphoto";
   winEmojis = ["🐚", "⭐", "🐢"];
 
   gameboard.style.backgroundImage = "url('./images/beach.png')";
@@ -181,6 +181,11 @@ function catchResult() {
     // Show card
     document.getElementById(`card${currentQuestion + 1}`).style.visibility =
       "visible";
+    // Modify card image placement by theme
+    if (theme == "beach") {
+      document.getElementById(`card${currentQuestion + 1}Caught`).style.top =
+        "39px";
+    }
     // Show caught creature on card
     document.getElementById(
       `card${currentQuestion + 1}Caught`,
@@ -210,7 +215,7 @@ function endGame() {
   // Congratulate based on animals caught
   if (creaturesCaught == iniCreatureAmt) {
     endTitle = "Congratulations!";
-    endBody = `You caught all of the ${animal}}!`;
+    endBody = `You caught all of the ${animal}!`;
   } else if (creaturesCaught > 0) {
     endTitle = "Good job!";
     endBody = `You caught ${creaturesCaught} out of ${iniCreatureAmt} ${animal}!`;
