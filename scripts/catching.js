@@ -17,7 +17,7 @@ if (theme == "fish") {
   gameboard.style.backgroundImage = "url('./images/fish_background.gif')";
 }
 if (theme == "beach") {
-  animal = "beachcritter";
+  animal = "critters";
   caughtContainer = "photo";
   winEmojis = ["🐚", "⭐", "🐢"];
 
@@ -28,7 +28,7 @@ if (theme == "beach") {
 // Amount of image options that exist for each animal (SET MANUALLY)
 const variants = {
   fish: 10,
-  beachcritter: 6,
+  critters: 6,
 };
 const iniCreatureAmt = 6;
 
@@ -210,13 +210,13 @@ function endGame() {
   // Congratulate based on animals caught
   if (creaturesCaught == iniCreatureAmt) {
     endTitle = "Congratulations!";
-    endBody = "You caught all of the creatures!";
+    endBody = `You caught all of the ${animal}}!`;
   } else if (creaturesCaught > 0) {
     endTitle = "Good job!";
-    endBody = `You caught ${creaturesCaught} out of ${iniCreatureAmt} creatures!`;
+    endBody = `You caught ${creaturesCaught} out of ${iniCreatureAmt} ${animal}!`;
   } else if (creaturesCaught == 0) {
-    endTitle = "No more animals!";
-    endBody = "All of the animals escaped. Try again!";
+    endTitle = `No more ${animal}!`;
+    endBody = `All of the ${animal} escaped. Try again!`;
   }
   // If time ran out, change title to "Time up!" instead
   if (timeUp) {
