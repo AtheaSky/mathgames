@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/candy.css" />
+
+    <script defer src="./scripts/modal.js"></script>
+    <script defer src="./scripts/opQues.js"></script>
+    <script defer src="./scripts/candy.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+    <!-- Title font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Text on tab name -->
+    <title>Candy Collecting</title>
+
+    <!-- Site icon on tab. Do one of the following:
+        * Replace "favicon.png" in images folder with your icon of same name
+        * Rename href below to "./images/(YOUR-IMAGE.EXTENSION)"
+        * Rename href below to "(IMAGE-WEB-URL.EXTENSION)" -->
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+  </head>
+
+  <body>
+    <!-- Intro settings modal -->
+    <div class="modal" id="introModal">
+      <div class="modal-content">
+        <h2>Settings</h2>
+
+        <br />
+
+        X
+        <select name="operator" id="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="×">×</option>
+          <option value="÷">÷</option>
+        </select>
+        Y
+
+        <br /><br />
+
+        <div>
+          <label>X Range:</label>
+          <input type="number" id="xMin" min="1" max="1000" value="1" /> to
+          <input type="number" id="xMax" min="1" max="1000" value="10" />
+        </div>
+        <div>
+          <label>Y Range:</label>
+          <input type="number" id="yMin" min="1" max="1000" value="1" /> to
+          <input type="number" id="yMax" min="1" max="1000" value="10" />
+        </div>
+
+        <br />
+
+        <div>
+          <label>Player 1:</label>
+          <select id="p1Style">
+            <option value="classic">Classic</option>
+            <option value="pinkbow">Pink bow</option>
+            <option value="bowtie">Bow tie</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Player 2:</label>
+          <select id="p2Style">
+            <option value="OFF" selected>OFF</option>
+            <option value="classic">Classic</option>
+            <option value="pinkbow">Pink bow</option>
+            <option value="bowtie">Bow tie</option>
+          </select>
+        </div>
+
+        <br />
+
+        <span style="color: brown">
+          Singleplayer = timer<br />Multiplayer = goal<br />
+          The opposite setting will be ignored.
+        </span>
+
+        <div>
+          <label>Timer (minutes):</label>
+          <input
+            type="number"
+            id="timerSetting"
+            value="5"
+            placeholder="off"
+            min="0.25"
+            step="0.25"
+            style="width: 55px"
+          />
+        </div>
+
+        <div>
+          <label>Goal:</label>
+          <input
+            type="number"
+            id="goal"
+            value="10"
+            placeholder="off"
+            min="1"
+            step="0.25"
+            style="width: 55px"
+          />
+        </div>
+
+        <br />
+
+        <div class="modalBtn btn" onClick="start('+')">Start</div>
+      </div>
+    </div>
+
+    <!-- End modal -->
+    <div class="modal" id="endModal">
+      <div class="modal-content" id="endModalContent"></div>
+    </div>
+
+    <!-- ----- Main content ----- -->
+    <h1 id="pageTitle">Candy Collecting</h1>
+
+    <!-- Objective container (timer or goal) -->
+    <div><h1 id="objective" style="visibility: hidden"></h1></div>
+
+    <!-- Candy score -->
+    <div id="candyScore">
+      <span id="p1ScoreBox" style="visibility: hidden"
+        >🍬<span id="p1Score">0</span></span
+      >
+      <span id="p2ScoreBox" style="visibility: hidden" style="display: none"
+        >🍬<span id="p2Score">0</span></span
+      >
+    </div>
+
+    <!-- Game content -->
+    <div class="gridwrap">
+      <div class="player">
+        <!-- Ghost -->
+        <img id="player1" />
+        <img id="player2" style="display: none" />
+      </div>
+
+      <!-- Question -->
+      <div class="question">
+        <span id="questionContainer"></span>
+      </div>
+
+      <!-- Answer cards -->
+      <div class="ansA answerCard">
+        <img
+          id="card0"
+          src="./images/answercard.png"
+          onclick="answerAttempt(0)"
+        />
+        <span id="ans0" class="answer"></span>
+      </div>
+      <div class="ansB answerCard">
+        <img
+          id="card1"
+          src="./images/answercard.png"
+          onclick="answerAttempt(1)"
+        />
+        <span id="ans1" class="answer"></span>
+      </div>
+      <div class="ansC answerCard">
+        <img
+          id="card2"
+          src="./images/answercard.png"
+          onclick="answerAttempt(2)"
+        />
+        <span id="ans2" class="answer"></span>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <hr />
+    <p>Instructions.</p>
+  </body>
+</html>

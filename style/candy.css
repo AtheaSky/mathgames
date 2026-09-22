@@ -1,0 +1,165 @@
+/* Modal settings */
+.modal {
+  font-size: 12pt;
+}
+.modalBtn {
+  width: 100px;
+  margin: auto;
+}
+.modal input {
+  width: 40px;
+  padding: 2px;
+}
+
+/* Objective */
+#objective {
+  position: absolute;
+  top: 120px;
+  left: 450px;
+}
+
+/* Candy score */
+#candyScore {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-top: 10px;
+
+  font-size: 32pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#scoreBoxP2 {
+  margin-left: 30px;
+}
+
+/* Grid */
+.gridwrap {
+  /* Grid */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "a b c"
+    "a b d"
+    "a b e";
+
+  /* Gameboard */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  height: 600px;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.question {
+  grid-area: b;
+  margin: auto;
+  font-size: 48pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ansA {
+  grid-area: c;
+  margin: auto;
+}
+
+.ansB {
+  grid-area: d;
+  margin: auto;
+  width: 200px;
+}
+
+.ansC {
+  grid-area: e;
+  margin: auto;
+}
+
+.answerCard img {
+  width: 200px;
+  cursor: pointer;
+}
+.answer {
+  position: absolute;
+  font-size: 30pt;
+  font-family: Arial, Helvetica, sans-serif;
+  pointer-events: none;
+}
+
+/* Player images */
+.player {
+  grid-area: a;
+  margin: auto;
+}
+.player img {
+  width: 150px;
+}
+#player2 {
+  margin-left: 15px;
+}
+
+/* Fade animations */
+@keyframes fadeInFull {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInHalf {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeOutHalf {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeFromHalf {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Other animations */
+@keyframes hop {
+  0% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -20px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes none {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
