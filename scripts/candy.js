@@ -1,6 +1,6 @@
 //-----GAME SETUP
-let twoPlayers;
-let goal;
+let twoPlayers, goal;
+let numAnswered = 0;
 
 let xMin, xMax, yMin, yMax, operator;
 
@@ -154,9 +154,33 @@ function nextQuestion() {
   // Create 2 fake answers
   let answers = [];
   answers.push(answer);
-  //stub
-  answers.push(5);
-  answers.push(10);
+  if (operator == "+" || operator == "-") {
+    let ansMin = currentAns - 10;
+    if (ansMin < 0) {
+      ansMin = 0;
+    }
+    let ansMax = currentAns + 10;
+
+    while (answers.length < 3) {
+      let newAns = Math.floor(Math.random() * ansMax) + ansMin;
+      if (!answers.includes(newAns)) {
+        answers.push(newAns);
+      }
+    }
+  } else {
+    let fac1 = Number(Array.from(question)[0]);
+    // let fac2 = Number(question.slice(-1));
+
+    let tentative = [];
+    tentative.push(answer - fac1);
+    tentative.push(answer + fac1);
+    for (let i = 0; i < 2; i++) {
+      if (tentative[i] < 0) {
+        tentative[i] = 0;
+      }
+      answers.push(tentative[i]);
+    }
+  }
 
   // Shuffle order
   answers.sort(() => Math.random() - 0.5);
@@ -179,6 +203,9 @@ function nextQuestion() {
 
 // When answer card clicked
 function answerAttempt(ansCardId) {
+  // Increment questions answered count
+  numAnswered++;
+
   // IF CORRECT:
   let ansChose = document.getElementById(`ans${ansCardId}`).innerText;
   if (ansChose == currentAns) {
@@ -248,7 +275,7 @@ function endGame(candy = NaN, winner = null) {
     endBody = `You found ${candy} candy first. Congratulations!`;
   } else if (timeUp) {
     endTitle = "Time up!";
-    endBody = `You found ${candy} candy. Congratulations!`;
+    endBody = `You found ${candy} out of ${numAnswered} candies. Congratulations!`;
   }
 
   // Insert text to end modal

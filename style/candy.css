@@ -14,8 +14,8 @@
 /* Objective */
 #objective {
   position: absolute;
-  top: 120px;
-  left: 450px;
+  top: 125px;
+  left: 460px;
 }
 
 /* Candy score */
@@ -26,7 +26,7 @@
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 25px;
 
   font-size: 32pt;
   font-family: Arial, Helvetica, sans-serif;
@@ -50,6 +50,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-color: #b675d6;
 
   height: 600px;
   width: 70%;
