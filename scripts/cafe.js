@@ -3,6 +3,7 @@ const variants = {
   cat: 4,
   hamster: 3,
   bird: 4,
+  dog: 2,
 };
 
 // ----- ENVIRONMENT SETUP
@@ -17,7 +18,8 @@ var petNum, petType, treatType;
 // Choose mode & number goal
 var modeText = "";
 modeText += `<span onclick="chooseMode('#')" class="btn clickVan">#</span> `;
-modeText += `<span onclick="chooseMode('+')" class="btn clickVan">+</span>`;
+modeText += `<span onclick="chooseMode('+')" class="btn clickVan">+</span> `;
+modeText += `<span onclick="chooseMode('÷')" class="btn clickVan">÷</span>`;
 speechBox.innerHTML = modeText;
 
 // ----- CUSTOM CURSOR
@@ -108,6 +110,17 @@ function chooseMode(mode) {
     const y = countTo - x;
 
     speechBox.innerHTML = `${x} + ${y}`;
+  } else if (mode == "÷") {
+    // Generate number 1-12 for division
+    countTo = Math.floor(Math.random() * 12) + 1;
+
+    // Generate factor 1-10
+    let fac2 = Math.floor(Math.random() * 10) + 1;
+    // Get other factor
+    let fac1 = countTo * fac2;
+
+    // Display
+    speechBox.innerHTML = `${fac1} ÷ ${fac2}`;
   } else {
     // Generate number 1-12 for regular
     countTo = Math.floor(Math.random() * 12) + 1;
@@ -266,6 +279,8 @@ function manageCount() {
       emoji = "🐟";
     } else if (petType == "hamster" || petType == "bird") {
       emoji = "🌻";
+    } else if (petType == "dog") {
+      emoji = "🦴";
     }
 
     emojiConfetti.addConfetti({
