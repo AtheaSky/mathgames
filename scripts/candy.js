@@ -154,6 +154,7 @@ function nextQuestion() {
   // Create 2 fake answers
   let answers = [];
   answers.push(answer);
+  // Addition or subtraction
   if (operator == "+" || operator == "-") {
     let ansMin = currentAns - 10;
     if (ansMin < 0) {
@@ -168,17 +169,28 @@ function nextQuestion() {
       }
     }
   } else {
+    // Multiplication or division
     let questionArr = Array.from(question);
     let fac1 = Number(questionArr[0]);
+    // Detect if 10 *******FIX
     if (questionArr[1] == "0") {
       console.log(questionArr[1]);
       fac1 = 10;
     }
-    // let fac2 = Number(question.slice(-1));
 
     let tentative = [];
-    tentative.push(answer - fac1);
-    tentative.push(answer + fac1);
+    // If division by itself
+    if (operator == "÷" && answer == 1) {
+      tentative.push(0);
+      tentative.push(fac1 + fac1);
+
+      // Else
+    } else {
+      tentative.push(answer - fac1);
+      tentative.push(answer + fac1);
+    }
+
+    // Push fake answers
     for (let i = 0; i < 2; i++) {
       if (tentative[i] < 0) {
         tentative[i] = 0;
