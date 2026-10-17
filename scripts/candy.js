@@ -172,10 +172,10 @@ function nextQuestion() {
     // Multiplication or division
     let questionArr = Array.from(question);
     let fac1 = Number(questionArr[0]);
-    // Detect if 10 *******FIX
-    if (questionArr[1] == "0") {
-      console.log(questionArr[1]);
-      fac1 = 10;
+    // Detect and set if >10
+    console.log(questionArr[1]);
+    if (questionArr[1] != " ") {
+      fac1 = 10 + Number(questionArr[1]);
     }
 
     let tentative = [];
