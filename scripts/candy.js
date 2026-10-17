@@ -168,7 +168,12 @@ function nextQuestion() {
       }
     }
   } else {
-    let fac1 = Number(Array.from(question)[0]);
+    let questionArr = Array.from(question);
+    let fac1 = Number(questionArr[0]);
+    if (questionArr[1] == "0") {
+      console.log(questionArr[1]);
+      fac1 = 10;
+    }
     // let fac2 = Number(question.slice(-1));
 
     let tentative = [];
