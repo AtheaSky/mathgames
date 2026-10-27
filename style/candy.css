@@ -14,7 +14,7 @@
 /* Objective */
 #objective {
   position: absolute;
-  top: 125px;
+  top: 135px;
   left: 460px;
 }
 
@@ -26,7 +26,7 @@
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 40px;
 
   font-size: 32pt;
   font-family: Arial, Helvetica, sans-serif;
@@ -50,7 +50,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-color: #b675d6;
+  /* background-color: #b675d6; */
+  background-image: url("../images/candy_bg.png");
 
   height: 600px;
   width: 70%;
