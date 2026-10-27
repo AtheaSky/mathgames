@@ -1,6 +1,7 @@
 //-----GAME SETUP
 let twoPlayers, goal;
 let numAnswered = 0;
+let canPlay = true;
 
 let xMin, xMax, yMin, yMax, operator;
 
@@ -220,26 +221,44 @@ function nextQuestion() {
 
 // When answer card clicked
 function answerAttempt(ansCardId) {
-  // Increment questions answered count
-  numAnswered++;
+  // If allowed to play at this moment
+  if (canPlay) {
+    // Disable playing while calculating
+    canPlay = false;
+    // Increment questions answered count
+    numAnswered++;
 
-  // IF CORRECT:
-  let ansChose = document.getElementById(`ans${ansCardId}`).innerText;
-  if (ansChose == currentAns) {
-    // Hop animation
-    player = document.getElementById(`player${playerTurn}`);
-    player.style.animation = "hop 0.35s ease-in 0s 2";
+    // IF CORRECT:
+    let ansChose = document.getElementById(`ans${ansCardId}`).innerText;
+    if (ansChose == currentAns) {
+      // Candy animation
+      let candyAnim = document.getElementById("candyAnim");
+      candyAnim.style.animation = "fadeInFull 0.5s";
+      setTimeout(() => {
+        candyAnim.style.animation = "fadeRise 1.5s";
+      }, 500);
 
-    // Increase candy score
-    if (playerTurn == 1) {
-      p1Score++;
-      document.getElementById(`p1Score`).innerText = p1Score;
+      // Increase candy score
+      if (playerTurn == 1) {
+        p1Score++;
+        document.getElementById(`p1Score`).innerText = p1Score;
+      } else {
+        p2Score++;
+        document.getElementById(`p2Score`).innerText = p2Score;
+      }
+
+      // Delay advancing game for animation
+      setTimeout(() => {
+        advanceGame();
+      }, 2000);
     } else {
-      p2Score++;
-      document.getElementById(`p2Score`).innerText = p2Score;
+      // If incorrect, advance game immediately
+      advanceGame();
     }
   }
+}
 
+function advanceGame() {
   // If 2-player
   if (twoPlayers) {
     // If score goal met, end game
@@ -277,6 +296,9 @@ function answerAttempt(ansCardId) {
 
   // Next question
   nextQuestion();
+
+  // Playing is allowed again
+  canPlay = true;
 }
 
 function endGame(candy = NaN, winner = null) {
@@ -317,8 +339,6 @@ function endGame(candy = NaN, winner = null) {
     emojiSize: 40,
     confettiNumber: Math.round(20),
   });
-
-  // Add regular confetti if caught at least one animals
 
   const jsConfetti = new JSConfetti();
 
