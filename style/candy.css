@@ -14,8 +14,8 @@
 /* Objective */
 #objective {
   position: absolute;
-  top: 135px;
-  left: 460px;
+  top: 130px;
+  left: 450px;
 }
 
 /* Candy score */
@@ -26,13 +26,22 @@
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 35px;
 
   font-size: 32pt;
   font-family: Arial, Helvetica, sans-serif;
 }
 #scoreBoxP2 {
   margin-left: 30px;
+}
+
+/* Candy animation */
+#candyAnim {
+  position: absolute;
+  font-size: 60pt;
+  left: 0;
+  right: 0;
+  top: 33%;
 }
 
 /* Grid */
@@ -51,13 +60,18 @@
   background-size: cover;
   background-position: center;
   /* background-color: #b675d6; */
-  background-image: url("../images/candy_bg.png");
+  /* background-image: url("../images/candy_bg.png"); */
+  background-image: linear-gradient(to right, #b145ff, #ad75ff, #b145ff);
 
   height: 600px;
   width: 70%;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  /* Border */
+  border-radius: 30px;
+  border: 15px solid white;
 }
 
 .question {
@@ -141,6 +155,17 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fadeRise {
+  0% {
+    opacity: 100;
+    translate: 0 0;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -20px;
   }
 }
 
